@@ -9,6 +9,8 @@ public class Ahorcado {
 	private int puntaje;
 	private int intentos;
 	
+	// Podriamos colocar un valor por default para intentos y elegir la palabra directamente desde el constructor
+	// De esta forma, quedaria el constructor sin parametros 
 	public Ahorcado(int intentos) {
 		this.palabra = "";
 		this.intentos = intentos; 
@@ -30,11 +32,18 @@ public class Ahorcado {
 		return this.palabraConGuiones;
 	}
 	
-	public String adivinarLetra(char letra) {
-		return "";
+	public void cambiarEstadoPalabra(char letra) {
+		for(int indice = 0; indice < palabraConGuiones.length;indice++) {
+			if(letra == palabraConGuiones[indice]) {
+				palabraConGuiones[indice] = letra;
+			}
+		}
 	}
 	
 	public boolean adivinoLetra(CharSequence c) {
 		return true;
+	}
+	private void restarIntento() {
+		intentos--;
 	}
 }
