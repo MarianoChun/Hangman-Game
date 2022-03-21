@@ -43,7 +43,12 @@ public class Ahorcado {
 	public boolean adivinoLetra(CharSequence c) {
 		return true;
 	}
-	private void restarIntento() {
-		intentos--;
+	
+	public int sumarPuntaje() {
+		return this.puntaje++;
+	}
+	
+	public int quitarIntentos() {
+		return this.intentos--;
 	}
 }
