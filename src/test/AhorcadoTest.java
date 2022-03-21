@@ -11,8 +11,7 @@ public class AhorcadoTest {
 	
 	@Before
 	public void setUp() {
-		a = new Ahorcado(5);
-		palabra = a.elegirPalabra();
+		a = new Ahorcado();
 	}
 	
 	@Test
