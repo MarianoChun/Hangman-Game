@@ -11,19 +11,20 @@ public class Ahorcado {
 	
 	// Podriamos colocar un valor por default para intentos y elegir la palabra directamente desde el constructor
 	// De esta forma, quedaria el constructor sin parametros 
-	public Ahorcado(int intentos) {
-		this.palabra = "";
-		this.intentos = intentos; 
+	public Ahorcado() {
+		this.palabra = elegirPalabra();
+		this.palabraConGuiones = convertirPalabraAGuiones(palabra); 
+		this.intentos = 6; 
 		this.puntaje = 0;
 	}
 	
-	public String elegirPalabra() {
+	private String elegirPalabra() {
 		Random random = new Random();
 		int elem = random.nextInt(this.palabras.length);
 		return this.palabra = this.palabras[elem];
 	}
 
-	public char[] convertirPalabraAGuiones(String palabra) {
+	private char[] convertirPalabraAGuiones(String palabra) {
 		this.palabraConGuiones = new char[palabra.length()];
 	
 		for (int i = 0; i < palabra.length(); i++) {
@@ -32,7 +33,7 @@ public class Ahorcado {
 		return this.palabraConGuiones;
 	}
 	
-	public void cambiarEstadoPalabra(char letra) {
+	private void cambiarEstadoPalabra(char letra) {
 		for(int indice = 0; indice < palabraConGuiones.length;indice++) {
 			if(letra == palabraConGuiones[indice]) {
 				palabraConGuiones[indice] = letra;
@@ -40,15 +41,28 @@ public class Ahorcado {
 		}
 	}
 	
-	public boolean adivinoLetra(CharSequence c) {
-		return true;
+	private boolean adivinoLetra(char letra) {
+		return palabra.contains(""+letra);
 	}
 	
-	public int sumarPuntaje() {
+	public void adivinarLetra(char letra) {
+		if(adivinoLetra(letra)) {
+			cambiarEstadoPalabra(letra);
+			sumarPuntaje();
+		} else {
+			quitarIntentos();
+		}
+	}
+	
+	private int sumarPuntaje() {
 		return this.puntaje++;
 	}
 	
-	public int quitarIntentos() {
+	private int quitarIntentos() {
 		return this.intentos--;
+	}
+	
+	public char[] obtenerPalabraAAdivinar(){
+		return palabraConGuiones;
 	}
 }
