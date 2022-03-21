@@ -37,4 +37,12 @@ public class Ahorcado {
 	public boolean adivinoLetra(CharSequence c) {
 		return true;
 	}
+	
+	public int sumarPuntaje() {
+		return this.puntaje++;
+	}
+	
+	public int quitarIntentos() {
+		return this.intentos--;
+	}
 }
