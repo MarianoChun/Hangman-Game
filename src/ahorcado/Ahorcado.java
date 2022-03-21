@@ -18,6 +18,19 @@ public class Ahorcado {
 		this.puntaje = 0;
 	}
 	
+	public char[] obtenerPalabraAAdivinar(){
+		return this.palabraConGuiones;
+	}
+	
+	public void adivinarLetra(char letra) {
+		if(adivinoLetra(letra)) {
+			cambiarEstadoPalabra(letra);
+			sumarPuntaje();
+		} else {
+			quitarIntentos();
+		}
+	}
+	
 	private String elegirPalabra() {
 		Random random = new Random();
 		int elem = random.nextInt(this.palabras.length);
@@ -45,15 +58,6 @@ public class Ahorcado {
 		return palabra.contains(""+letra);
 	}
 	
-	public void adivinarLetra(char letra) {
-		if(adivinoLetra(letra)) {
-			cambiarEstadoPalabra(letra);
-			sumarPuntaje();
-		} else {
-			quitarIntentos();
-		}
-	}
-	
 	private int sumarPuntaje() {
 		return this.puntaje++;
 	}
@@ -62,7 +66,4 @@ public class Ahorcado {
 		return this.intentos--;
 	}
 	
-	public char[] obtenerPalabraAAdivinar(){
-		return palabraConGuiones;
-	}
 }
