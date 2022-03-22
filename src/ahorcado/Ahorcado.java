@@ -26,17 +26,28 @@ public class Ahorcado {
 		this.puntaje = 0;
 	}
 
-	public char[] obtenerPalabraAAdivinar() {
-		return this.palabraConGuiones;
+	public String obtenerPalabraAAdivinar() {
+		StringBuilder palabra = new StringBuilder();
+		for(int i = 0; i < this.palabraConGuiones.length; i++) {
+			palabra.append(palabraConGuiones[i]);
+		}
+		return palabra.toString();
 	}
 
 	public void adivinarLetra(char letra) {
+		if (letra == 0) {
+			letra = ' ';
+		}
 		if (adivinoLetra(letra)) {
 			cambiarEstadoPalabra(letra);
 			sumarPuntaje();
 		} else {
 			quitarIntentos();
 		}
+	}
+	
+	public boolean perdioJuego() {
+		return this.intentos == 0;
 	}
 
 	private String elegirPalabra() {

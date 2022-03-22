@@ -14,13 +14,13 @@ public class AhorcadoTest {
 		a = new Ahorcado("casa");
 	}
 
-	@Test
-	public void adivinarLetraTest() {
-		a.adivinarLetra('a');
-		char[] arrayEsperado = { '-', 'a', '-', 'a' };
-
-		assertArrayEquals(arrayEsperado, a.obtenerPalabraAAdivinar());
-	}
+//	@Test
+//	public void adivinarLetraTest() {
+//		a.adivinarLetra('a');
+//		char[] arrayEsperado = { '-', 'a', '-', 'a' };
+//
+//		assertArrayEquals(arrayEsperado, a.obtenerPalabraAAdivinar());
+//	}
 
 	@Test
 	public void puntajeTest() {
