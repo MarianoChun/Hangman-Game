@@ -18,6 +18,13 @@ public class Ahorcado {
 		this.puntaje = 0;
 	}
 	
+	public Ahorcado(String palabra) {
+		this.palabra = palabra;
+		this.palabraConGuiones = convertirPalabraAGuiones(palabra); 
+		this.intentos = 6; 
+		this.puntaje = 0;
+	}
+	
 	public char[] obtenerPalabraAAdivinar(){
 		return this.palabraConGuiones;
 	}
@@ -48,7 +55,7 @@ public class Ahorcado {
 	
 	private void cambiarEstadoPalabra(char letra) {
 		for(int indice = 0; indice < palabraConGuiones.length;indice++) {
-			if(letra == palabraConGuiones[indice]) {
+			if(letra == palabra.charAt(indice)) {
 				palabraConGuiones[indice] = letra;
 			}
 		}
@@ -64,6 +71,14 @@ public class Ahorcado {
 	
 	private int quitarIntentos() {
 		return this.intentos--;
+	}
+
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public int getIntentos() {
+		return intentos;
 	}
 	
 }

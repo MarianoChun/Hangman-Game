@@ -11,15 +11,33 @@ public class AhorcadoTest {
 	
 	@Before
 	public void setUp() {
-		a = new Ahorcado();
-<<<<<<< HEAD
-=======
+		a = new Ahorcado("casa");
+	}
+	
+	
+	@Test
+	public void adivinarLetraTest() {
+		a.adivinarLetra('a');
+		char[] arrayEsperado = {'-','a','-','a'};
 		
->>>>>>> 505b1c103f3dc038ed6d3b4c9ef10c704300d88e
+		assertArrayEquals(arrayEsperado,a.obtenerPalabraAAdivinar());
 	}
 	
 	@Test
-	public void adivinoLetraTest() {
-		
+	public void puntajeTest() {
+		a.adivinarLetra('a');
+		assertEquals(1,a.getPuntaje());
+	}
+	
+	@Test
+	public void intentoTest() {
+		a.adivinarLetra('a');
+		assertEquals(6,a.getIntentos());
+	}
+	
+	@Test
+	public void restarIntentoTest() {
+		a.adivinarLetra('b');
+		assertEquals(5,a.getIntentos());
 	}
 }
