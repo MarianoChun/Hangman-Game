@@ -14,7 +14,7 @@ public class Ahorcado {
 	// De esta forma, quedaria el constructor sin parametros
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
-		this.palabraConGuiones = convertirPalabraAGuiones(palabra);
+		this.palabraConGuiones = convertirPalabraAGuiones(this.palabra);
 		this.intentos = 6;
 		this.puntaje = 0;
 	}
@@ -35,9 +35,6 @@ public class Ahorcado {
 	}
 
 	public void adivinarLetra(char letra) {
-		if (letra == 0) {
-			letra = ' ';
-		}
 		if (adivinoLetra(letra)) {
 			cambiarEstadoPalabra(letra);
 			sumarPuntaje();
@@ -66,15 +63,15 @@ public class Ahorcado {
 	}
 
 	private void cambiarEstadoPalabra(char letra) {
-		for (int indice = 0; indice < palabraConGuiones.length; indice++) {
-			if (letra == palabra.charAt(indice)) {
-				palabraConGuiones[indice] = letra;
+		for (int indice = 0; indice < this.palabraConGuiones.length; indice++) {
+			if (letra == this.palabra.charAt(indice)) {
+				this.palabraConGuiones[indice] = letra;
 			}
 		}
 	}
 
 	private boolean adivinoLetra(char letra) {
-		return palabra.contains("" + letra);
+		return this.palabra.contains("" + letra);
 	}
 
 	private int sumarPuntaje() {

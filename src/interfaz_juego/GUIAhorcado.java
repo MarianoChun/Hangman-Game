@@ -13,15 +13,13 @@ import javax.swing.SwingConstants;
 
 import ahorcado.Ahorcado;
 
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
 import java.awt.Font;
 
 public class GUIAhorcado {
 
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
-	private Ahorcado a = new Ahorcado("hola");
+	private Ahorcado ahorcado;
 
 	/**
 	 * Launch the application.
@@ -61,19 +59,22 @@ public class GUIAhorcado {
 		frmJuegoAhorcado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuegoAhorcado.getContentPane().setLayout(null);
 
-		// texto
+		// inicializo ahorcado
+		ahorcado = new Ahorcado();
+
+		// textos
 		JLabel lblPalabra = new JLabel("Palabra a adivinar");
 		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPalabra.setBounds(187, 117, 172, 34);
 		frmJuegoAhorcado.getContentPane().add(lblPalabra);
 
-		JLabel lblPuntaje = new JLabel("Puntaje: " + a.getPuntaje());
+		JLabel lblPuntaje = new JLabel("Puntaje: " + ahorcado.getPuntaje());
 		lblPuntaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPuntaje.setBounds(10, 11, 93, 23);
 		frmJuegoAhorcado.getContentPane().add(lblPuntaje);
 
-		JLabel lblIntentos = new JLabel("Intentos: " + a.getIntentos());
+		JLabel lblIntentos = new JLabel("Intentos: " + ahorcado.getIntentos());
 		lblIntentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblIntentos.setBounds(479, 11, 84, 23);
 		frmJuegoAhorcado.getContentPane().add(lblIntentos);
@@ -84,22 +85,13 @@ public class GUIAhorcado {
 		lblPalabraConGuiones.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPalabraConGuiones.setBounds(162, 162, 218, 48);
 		frmJuegoAhorcado.getContentPane().add(lblPalabraConGuiones);
-
-		// comenzar juego
-		JButton btnStart = new JButton("Start");
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				lblPalabraConGuiones.setText(a.obtenerPalabraAAdivinar().toString());
-				textLetraIngresada.setEnabled(true);
-			}
-		});
-
-		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnStart.setBounds(228, 13, 89, 23);
-		frmJuegoAhorcado.getContentPane().add(btnStart);
-
+		
 		// verificar letra ingresada
 		JButton btnVerificarLetra = new JButton("Verificar letra");
+		btnVerificarLetra.setBackground(new Color(245, 222, 179));
+		btnVerificarLetra.setForeground(new Color(0, 0, 0));
+		btnVerificarLetra.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVerificarLetra.setEnabled(false);
 		btnVerificarLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				char letraUsuario;
@@ -108,20 +100,50 @@ public class GUIAhorcado {
 				} else {
 					letraUsuario = ' ';
 				}
-				a.adivinarLetra(letraUsuario);
-				lblPalabraConGuiones.setText(a.obtenerPalabraAAdivinar().toString());
-				lblPuntaje.setText("Puntaje: " + a.getPuntaje());
-				lblIntentos.setText("Intentos: " + a.getIntentos());
+				ahorcado.adivinarLetra(letraUsuario);
+				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
+				lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
+				lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
 			}
 		});
 		btnVerificarLetra.setBounds(204, 285, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(btnVerificarLetra);
 
+		// cambiar de palabra
+		JButton btnCambiarPalabra = new JButton("Cambiar palabra");
+		btnCambiarPalabra.setEnabled(false);
+		btnCambiarPalabra.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
+		btnCambiarPalabra.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnCambiarPalabra.setBounds(204, 53, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(btnCambiarPalabra);
+
+		// comenzar juego
+		JButton btnStart = new JButton("Start");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
+				textLetraIngresada.setEnabled(true);
+				btnVerificarLetra.setEnabled(true);
+				btnCambiarPalabra.setEnabled(true);
+			}
+		});
+
+		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnStart.setBounds(204, 13, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(btnStart);
+
 		// letra ingresada por usuario
 		textLetraIngresada = new JTextField();
+		textLetraIngresada.setHorizontalAlignment(SwingConstants.CENTER);
 		textLetraIngresada.setEnabled(false);
 		textLetraIngresada.setBounds(204, 237, 143, 20);
 		frmJuegoAhorcado.getContentPane().add(textLetraIngresada);
 		textLetraIngresada.setColumns(10);
+
 	}
 }
