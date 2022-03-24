@@ -1,5 +1,6 @@
 package interfaz_juego;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -18,8 +19,8 @@ import java.awt.Font;
 
 public class GUIAhorcado {
 
-	private JFrame frame;
-	private JTextField textLetra;
+	private JFrame frmJuegoAhorcado;
+	private JTextField textLetraIngresada;
 	private Ahorcado a = new Ahorcado("hola");
 
 	/**
@@ -30,7 +31,7 @@ public class GUIAhorcado {
 			public void run() {
 				try {
 					GUIAhorcado window = new GUIAhorcado();
-					window.frame.setVisible(true);
+					window.frmJuegoAhorcado.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,40 +50,61 @@ public class GUIAhorcado {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
-		
+		// ventana
+		frmJuegoAhorcado = new JFrame();
+		frmJuegoAhorcado.setForeground(Color.WHITE);
+		frmJuegoAhorcado.getContentPane().setForeground(Color.WHITE);
+		frmJuegoAhorcado.setResizable(false);
+		frmJuegoAhorcado.setTitle("Juego Ahorcado");
+		frmJuegoAhorcado.setBackground(Color.PINK);
+		frmJuegoAhorcado.setBounds(100, 100, 589, 375);
+		frmJuegoAhorcado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmJuegoAhorcado.getContentPane().setLayout(null);
+
 		// texto
 		JLabel lblPalabra = new JLabel("Palabra a adivinar");
+		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPalabra.setBounds(119, 64, 172, 34);
-		frame.getContentPane().add(lblPalabra);
+		lblPalabra.setBounds(187, 117, 172, 34);
+		frmJuegoAhorcado.getContentPane().add(lblPalabra);
 
 		JLabel lblPuntaje = new JLabel("Puntaje: " + a.getPuntaje());
+		lblPuntaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblPuntaje.setBounds(10, 11, 93, 23);
-		frame.getContentPane().add(lblPuntaje);
+		frmJuegoAhorcado.getContentPane().add(lblPuntaje);
 
 		JLabel lblIntentos = new JLabel("Intentos: " + a.getIntentos());
-		lblIntentos.setBounds(340, 11, 84, 23);
-		frame.getContentPane().add(lblIntentos);
-
+		lblIntentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblIntentos.setBounds(479, 11, 84, 23);
+		frmJuegoAhorcado.getContentPane().add(lblIntentos);
 
 		// palabra a adivinar
-		JLabel lblPalabraConGuiones = new JLabel(a.obtenerPalabraAAdivinar());
-		lblPalabraConGuiones.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		JLabel lblPalabraConGuiones = new JLabel("");
+		lblPalabraConGuiones.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblPalabraConGuiones.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPalabraConGuiones.setBounds(129, 109, 162, 34);
-		frame.getContentPane().add(lblPalabraConGuiones);
-		
+		lblPalabraConGuiones.setBounds(162, 162, 218, 48);
+		frmJuegoAhorcado.getContentPane().add(lblPalabraConGuiones);
+
+		// comenzar juego
+		JButton btnStart = new JButton("Start");
+		btnStart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				lblPalabraConGuiones.setText(a.obtenerPalabraAAdivinar().toString());
+				textLetraIngresada.setEnabled(true);
+			}
+		});
+
+		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnStart.setBounds(228, 13, 89, 23);
+		frmJuegoAhorcado.getContentPane().add(btnStart);
+
 		// verificar letra ingresada
 		JButton btnVerificarLetra = new JButton("Verificar letra");
 		btnVerificarLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				char letraUsuario;
-				if(textLetra.getText().length() > 0) {
-					letraUsuario = textLetra.getText().charAt(0);
+				if (textLetraIngresada.getText().length() > 0) {
+					letraUsuario = textLetraIngresada.getText().charAt(0);
 				} else {
 					letraUsuario = ' ';
 				}
@@ -92,13 +114,14 @@ public class GUIAhorcado {
 				lblIntentos.setText("Intentos: " + a.getIntentos());
 			}
 		});
-		btnVerificarLetra.setBounds(138, 199, 143, 23);
-		frame.getContentPane().add(btnVerificarLetra);
+		btnVerificarLetra.setBounds(204, 285, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(btnVerificarLetra);
 
-		//letra ingresada por usuario
-		textLetra = new JTextField();
-		textLetra.setBounds(138, 166, 143, 20);
-		frame.getContentPane().add(textLetra);
-		textLetra.setColumns(10);
+		// letra ingresada por usuario
+		textLetraIngresada = new JTextField();
+		textLetraIngresada.setEnabled(false);
+		textLetraIngresada.setBounds(204, 237, 143, 20);
+		frmJuegoAhorcado.getContentPane().add(textLetraIngresada);
+		textLetraIngresada.setColumns(10);
 	}
 }

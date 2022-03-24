@@ -28,7 +28,7 @@ public class Ahorcado {
 
 	public String obtenerPalabraAAdivinar() {
 		StringBuilder palabra = new StringBuilder();
-		for(int i = 0; i < this.palabraConGuiones.length; i++) {
+		for (int i = 0; i < this.palabraConGuiones.length; i++) {
 			palabra.append(palabraConGuiones[i]);
 		}
 		return palabra.toString();
@@ -45,7 +45,7 @@ public class Ahorcado {
 			quitarIntentos();
 		}
 	}
-	
+
 	public boolean perdioJuego() {
 		return this.intentos == 0;
 	}
