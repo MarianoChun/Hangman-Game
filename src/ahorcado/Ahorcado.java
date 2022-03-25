@@ -1,10 +1,13 @@
 package ahorcado;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Random;
 
 public class Ahorcado {
 	private String[] palabras = { "hola", "casa", "auto", "perro" };
 	private String palabra;
+	private List<String> letrasAdivinadas;
 	private char[] palabraConGuiones;
 	private int puntaje;
 	private int intentos;
@@ -15,6 +18,7 @@ public class Ahorcado {
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
 		this.palabraConGuiones = convertirPalabraAGuiones(this.palabra);
+		this.letrasAdivinadas = new LinkedList<String>();
 		this.intentos = 6;
 		this.puntaje = 0;
 	}
@@ -22,6 +26,7 @@ public class Ahorcado {
 	public Ahorcado(String palabra) {
 		this.palabra = palabra;
 		this.palabraConGuiones = convertirPalabraAGuiones(palabra);
+		this.letrasAdivinadas = new LinkedList<String>();
 		this.intentos = 6;
 		this.puntaje = 0;
 	}
@@ -36,8 +41,9 @@ public class Ahorcado {
 
 	public void adivinarLetra(char letra) {
 		if (adivinoLetra(letra)) {
-			cambiarEstadoPalabra(letra);
-			sumarPuntaje();
+			cambiarEstadoPalabra(letra);		
+			sumarPuntaje(letra);	
+			agregarLetraAdivinada(letra);
 		} else {
 			quitarIntentos();
 		}
@@ -74,12 +80,25 @@ public class Ahorcado {
 		return this.palabra.contains("" + letra);
 	}
 
-	private int sumarPuntaje() {
-		return this.puntaje++;
+	private void agregarLetraAdivinada(char letra) {
+		if(!esLetraAdivinada(letra)) {
+			letrasAdivinadas.add(""+letra);
+		}
+	}
+	private boolean esLetraAdivinada(char letra) {
+		return letrasAdivinadas.contains(""+letra);
+	}
+	private void sumarPuntaje(char letra) {
+		if(!esLetraAdivinada(letra)) {
+			this.puntaje++;
+		}
 	}
 
-	private int quitarIntentos() {
-		return this.intentos--;
+	private void quitarIntentos() {
+		if(this.intentos > 0) {
+			this.intentos--;
+		}
+		
 	}
 
 	public int getPuntaje() {
@@ -88,6 +107,10 @@ public class Ahorcado {
 
 	public int getIntentos() {
 		return intentos;
+	}
+
+	public List<String> getLetrasAdivinadas() {
+		return letrasAdivinadas;
 	}
 
 }

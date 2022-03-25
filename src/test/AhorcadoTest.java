@@ -23,20 +23,44 @@ public class AhorcadoTest {
 //	}
 
 	@Test
-	public void puntajeTest() {
+	public void sumarPuntajeTest() {
 		a.adivinarLetra('a');
 		assertEquals(1, a.getPuntaje());
 	}
 
 	@Test
-	public void intentoTest() {
+	public void intentoCorrectoTest() {
 		a.adivinarLetra('a');
 		assertEquals(6, a.getIntentos());
 	}
 
 	@Test
-	public void restarIntentoTest() {
+	public void restarIntentoPositivoTest() {
 		a.adivinarLetra('b');
 		assertEquals(5, a.getIntentos());
+	}
+	@Test
+	public void restarIntentoIgualACeroTest() {
+		int i = 8;
+		while(i >= 0) {
+			a.adivinarLetra('b');
+			i--;
+		}
+			
+		assertEquals(0, a.getIntentos());
+	}
+	@Test
+	public void agregarLetrasAdivinadas() {
+		a.adivinarLetra('a');
+		a.adivinarLetra('s');
+		int tamañoLetrasAdivinadas = a.getLetrasAdivinadas().size();
+		
+		assertEquals(2, tamañoLetrasAdivinadas);
+	}
+	@Test
+	public void sumarPuntajeDeLetraAdivinada() {
+		a.adivinarLetra('a');
+		a.adivinarLetra('a');
+		assertEquals(1,a.getPuntaje());
 	}
 }
