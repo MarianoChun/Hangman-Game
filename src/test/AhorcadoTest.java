@@ -14,13 +14,13 @@ public class AhorcadoTest {
 		a = new Ahorcado("casa");
 	}
 
-//	@Test
-//	public void adivinarLetraTest() {
-//		a.adivinarLetra('a');
-//		char[] arrayEsperado = { '-', 'a', '-', 'a' };
-//
-//		assertArrayEquals(arrayEsperado, a.obtenerPalabraAAdivinar());
-//	}
+	@Test
+	public void adivinarLetraYObtenerPalabraConGuionesTest() {
+		a.adivinarLetra('a');
+		String palabraEsperada = "-a-a";
+
+		assertEquals(palabraEsperada, a.obtenerPalabraAAdivinar());
+	}
 
 	@Test
 	public void sumarPuntajeTest() {
@@ -62,5 +62,39 @@ public class AhorcadoTest {
 		a.adivinarLetra('a');
 		a.adivinarLetra('a');
 		assertEquals(1,a.getPuntaje());
+	}
+	@Test
+	public void cambiarPalabraPuntajeTest() {
+		a.adivinarLetra('c');
+		a.adivinarLetra('s');
+		
+		a.cambiarPalabra();
+		
+		assertEquals(0, a.getPuntaje());
+	}
+	@Test
+	public void cambiarPalabraIntentosTest() {
+		a.adivinarLetra('t');
+		a.adivinarLetra('z');
+		
+		a.cambiarPalabra();
+		
+		assertEquals(6, a.getIntentos());		
+	}
+	@Test
+	public void cambiarPalabraTest() {
+		Ahorcado ahorcado = new Ahorcado("perro");
+		ahorcado.adivinarLetra('p');
+		ahorcado.adivinarLetra('e');
+		ahorcado.adivinarLetra('r');
+
+		ahorcado.cambiarPalabra();
+		
+		ahorcado.adivinarLetra('p');
+		ahorcado.adivinarLetra('e');
+		ahorcado.adivinarLetra('r');
+		String palabraNueva = ahorcado.obtenerPalabraAAdivinar();
+		
+		assertNotEquals("perr-", palabraNueva);		
 	}
 }

@@ -113,7 +113,10 @@ public class GUIAhorcado {
 		btnCambiarPalabra.setEnabled(false);
 		btnCambiarPalabra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				ahorcado.cambiarPalabra();
+				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
+				lblPuntaje.setText("Puntaje: "+ahorcado.getPuntaje());
+				lblIntentos.setText("Intentos: "+ahorcado.getIntentos());
 			}
 		});
 		

@@ -11,12 +11,13 @@ public class Ahorcado {
 	private char[] palabraConGuiones;
 	private int puntaje;
 	private int intentos;
+	final int DEFAULT_INTENTOS = 6;
 	//
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
 		this.palabraConGuiones = convertirPalabraAGuiones(this.palabra);
 		this.letrasAdivinadas = new LinkedList<String>();
-		this.intentos = 6;
+		this.intentos = DEFAULT_INTENTOS;
 		this.puntaje = 0;
 	}
 
@@ -24,7 +25,7 @@ public class Ahorcado {
 		this.palabra = palabra;
 		this.palabraConGuiones = convertirPalabraAGuiones(palabra);
 		this.letrasAdivinadas = new LinkedList<String>();
-		this.intentos = 6;
+		this.intentos = DEFAULT_INTENTOS;
 		this.puntaje = 0;
 	}
 
@@ -49,11 +50,42 @@ public class Ahorcado {
 	public boolean perdioJuego() {
 		return this.intentos == 0;
 	}
+	
+	public int getPuntaje() {
+		return puntaje;
+	}
 
+	public int getIntentos() {
+		return intentos;
+	}
+
+	public List<String> getLetrasAdivinadas() {
+		return letrasAdivinadas;
+	}
+	/* Seria lo mismo que SetPalabra() */
+	public void cambiarPalabra() {
+		String viejaPalabra = this.palabra;
+		String nuevaPalabra = elegirPalabra();
+		while(nuevaPalabra == viejaPalabra) {
+			nuevaPalabra = elegirPalabra();
+		}
+
+		restablecerIntentos();
+		restablecerPuntaje();
+		this.palabra = nuevaPalabra;
+		this.palabraConGuiones = convertirPalabraAGuiones(nuevaPalabra);
+	}
+	
+	private void restablecerIntentos() {
+		this.intentos = DEFAULT_INTENTOS;
+	}
+	private void restablecerPuntaje() {
+		this.puntaje = 0;
+	}
 	private String elegirPalabra() {
 		Random random = new Random();
 		int elem = random.nextInt(this.palabras.length);
-		return this.palabra = this.palabras[elem];
+		return this.palabras[elem];
 	}
 
 	private char[] convertirPalabraAGuiones(String palabra) {
@@ -96,18 +128,6 @@ public class Ahorcado {
 			this.intentos--;
 		}
 		
-	}
-
-	public int getPuntaje() {
-		return puntaje;
-	}
-
-	public int getIntentos() {
-		return intentos;
-	}
-
-	public List<String> getLetrasAdivinadas() {
-		return letrasAdivinadas;
 	}
 
 }
