@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
+import Atxy2k.CustomTextField.RestrictedTextField;
 import ahorcado.Ahorcado;
 
 import java.awt.Font;
@@ -144,6 +145,11 @@ public class GUIAhorcado {
 		textLetraIngresada.setBounds(204, 237, 143, 20);
 		frmJuegoAhorcado.getContentPane().add(textLetraIngresada);
 		textLetraIngresada.setColumns(10);
+		
+		// restrinjo cantidad de caracteres que puede ingresar el usuario
+		RestrictedTextField restricted = new RestrictedTextField(textLetraIngresada);
+		restricted.setLimit(1);
+		restricted.setOnlyText(true);
 
 	}
 }

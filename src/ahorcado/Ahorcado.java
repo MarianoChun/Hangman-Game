@@ -11,10 +11,7 @@ public class Ahorcado {
 	private char[] palabraConGuiones;
 	private int puntaje;
 	private int intentos;
-
-	// Podriamos colocar un valor por default para intentos y elegir la palabra
-	// directamente desde el constructor
-	// De esta forma, quedaria el constructor sin parametros
+	//
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
 		this.palabraConGuiones = convertirPalabraAGuiones(this.palabra);
