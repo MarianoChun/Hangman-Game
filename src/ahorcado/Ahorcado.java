@@ -5,14 +5,14 @@ import java.util.List;
 import java.util.Random;
 
 public class Ahorcado {
-	private String[] palabras = { "hola", "casa", "auto", "perro" };
+	private String[] palabras = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco", "bote" };
 	private String palabra;
 	private List<String> letrasAdivinadas;
 	private char[] palabraConGuiones;
 	private int puntaje;
 	private int intentos;
-	final int DEFAULT_INTENTOS = 6;
-	//
+	private final int DEFAULT_INTENTOS = 6;
+	
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
 		this.palabraConGuiones = convertirPalabraAGuiones(this.palabra);
@@ -62,6 +62,7 @@ public class Ahorcado {
 	public List<String> getLetrasAdivinadas() {
 		return letrasAdivinadas;
 	}
+	
 	/* Seria lo mismo que SetPalabra() */
 	public void cambiarPalabra() {
 		String viejaPalabra = this.palabra;
