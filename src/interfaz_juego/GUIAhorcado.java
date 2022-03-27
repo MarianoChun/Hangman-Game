@@ -9,6 +9,7 @@ import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
@@ -21,6 +22,7 @@ public class GUIAhorcado {
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
+	private JOptionPane panelPerdio = null;
 
 	/**
 	 * Launch the application.
@@ -34,6 +36,8 @@ public class GUIAhorcado {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
+				
+				
 			}
 		});
 	}
@@ -59,10 +63,13 @@ public class GUIAhorcado {
 		frmJuegoAhorcado.setBounds(100, 100, 589, 375);
 		frmJuegoAhorcado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuegoAhorcado.getContentPane().setLayout(null);
+		
 
 		// inicializo ahorcado
 		ahorcado = new Ahorcado();
-
+		
+		
+		
 		// textos
 		JLabel lblPalabra = new JLabel("Palabra a adivinar");
 		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -87,6 +94,7 @@ public class GUIAhorcado {
 		lblPalabraConGuiones.setBounds(162, 162, 218, 48);
 		frmJuegoAhorcado.getContentPane().add(lblPalabraConGuiones);
 		
+		
 		// verificar letra ingresada
 		JButton btnVerificarLetra = new JButton("Verificar letra");
 		btnVerificarLetra.setBackground(new Color(245, 222, 179));
@@ -97,14 +105,27 @@ public class GUIAhorcado {
 			public void actionPerformed(ActionEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
 				ahorcado.adivinarLetra(inputUsuario);
-				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
-				lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
-				lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
+				
+				if(ahorcado.perdioJuego()) {
+					panelPerdio.showConfirmDialog(frmJuegoAhorcado, "¡Perdiste!, ¿Desea seguir jugando?", "", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+					if(panelPerdio.YES_NO_OPTION == 0)
+						ahorcado.reiniciarJuego();
+					else
+						frmJuegoAhorcado.setVisible(false);
+						frmJuegoAhorcado.dispose();
+				}
+				
+				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones);
 			}
+
+			
 		});
+		
 		btnVerificarLetra.setBounds(204, 285, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(btnVerificarLetra);
 
+		
+		
 		// cambiar de palabra
 		JButton btnCambiarPalabra = new JButton("Reiniciar");
 		btnCambiarPalabra.setEnabled(false);
@@ -148,6 +169,13 @@ public class GUIAhorcado {
 		RestrictedTextField restricted = new RestrictedTextField(textLetraIngresada);
 		restricted.setLimit(1);
 		restricted.setOnlyText(true);
-
+	
+		
+	}
+	
+	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
+		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
+		lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
+		lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
 	}
 }
