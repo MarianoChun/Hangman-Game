@@ -64,7 +64,7 @@ public class AhorcadoTest {
 		assertEquals(1,a.getPuntaje());
 	}
 	@Test
-	public void cambiarPalabraPuntajeTest() {
+	public void reiniciarJuegoPuntajeTest() {
 		a.adivinarLetra('c');
 		a.adivinarLetra('s');
 		
@@ -73,7 +73,7 @@ public class AhorcadoTest {
 		assertEquals(0, a.getPuntaje());
 	}
 	@Test
-	public void cambiarPalabraIntentosTest() {
+	public void reiniciarJuegoIntentosTest() {
 		a.adivinarLetra('t');
 		a.adivinarLetra('z');
 		
@@ -82,7 +82,7 @@ public class AhorcadoTest {
 		assertEquals(6, a.getIntentos());		
 	}
 	@Test
-	public void cambiarPalabraTest() {
+	public void reiniciarJuegoTest() {
 		Ahorcado ahorcado = new Ahorcado("perro");
 		ahorcado.adivinarLetra('p');
 		ahorcado.adivinarLetra('e');
@@ -97,4 +97,14 @@ public class AhorcadoTest {
 		
 		assertNotEquals("perr-", palabraNueva);		
 	}
+	
+	@Test
+	public void perdioJuegoTest() {
+		Ahorcado ahorcado = new Ahorcado("pepito");
+		for (int i = 0; i < 6;i++) {
+			ahorcado.adivinarLetra('z');
+		}
+		assertEquals(true, ahorcado.perdioJuego());
+	}
+	
 }
