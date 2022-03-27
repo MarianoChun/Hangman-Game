@@ -97,7 +97,7 @@ public class GUIAhorcado {
 			public void actionPerformed(ActionEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
 				ahorcado.adivinarLetra(inputUsuario);
-				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
+				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
 				lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
 				lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
 			}
@@ -106,12 +106,12 @@ public class GUIAhorcado {
 		frmJuegoAhorcado.getContentPane().add(btnVerificarLetra);
 
 		// cambiar de palabra
-		JButton btnCambiarPalabra = new JButton("Cambiar palabra");
+		JButton btnCambiarPalabra = new JButton("Reiniciar");
 		btnCambiarPalabra.setEnabled(false);
 		btnCambiarPalabra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ahorcado.cambiarPalabra();
-				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
+				ahorcado.reiniciarJuego();
+				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
 				lblPuntaje.setText("Puntaje: "+ahorcado.getPuntaje());
 				lblIntentos.setText("Intentos: "+ahorcado.getIntentos());
 			}
@@ -125,7 +125,7 @@ public class GUIAhorcado {
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
+				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
 				textLetraIngresada.setEnabled(true);
 				btnVerificarLetra.setEnabled(true);
 				btnCambiarPalabra.setEnabled(true);

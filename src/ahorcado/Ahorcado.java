@@ -8,14 +8,14 @@ public class Ahorcado {
 	private String[] palabras = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco", "bote" };
 	private String palabra;
 	private List<String> letrasAdivinadas;
-	private char[] palabraConGuiones;
+	private char[] palabraSecreta;
 	private int puntaje;
 	private int intentos;
 	private final int DEFAULT_INTENTOS = 6;
 	
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
-		this.palabraConGuiones = convertirPalabraAGuiones(this.palabra);
+		this.palabraSecreta = convertirPalabraAGuiones(this.palabra);
 		this.letrasAdivinadas = new LinkedList<String>();
 		this.intentos = DEFAULT_INTENTOS;
 		this.puntaje = 0;
@@ -23,16 +23,16 @@ public class Ahorcado {
 
 	public Ahorcado(String palabra) {
 		this.palabra = palabra;
-		this.palabraConGuiones = convertirPalabraAGuiones(palabra);
+		this.palabraSecreta = convertirPalabraAGuiones(palabra);
 		this.letrasAdivinadas = new LinkedList<String>();
 		this.intentos = DEFAULT_INTENTOS;
 		this.puntaje = 0;
 	}
 
-	public String obtenerPalabraAAdivinar() {
+	public String obtenerPalabraSecreta() {
 		StringBuilder palabra = new StringBuilder();
-		for (int i = 0; i < this.palabraConGuiones.length; i++) {
-			palabra.append(palabraConGuiones[i]);
+		for (int i = 0; i < this.palabraSecreta.length; i++) {
+			palabra.append(palabraSecreta[i]);
 		}
 		return palabra.toString();
 	}
@@ -42,9 +42,16 @@ public class Ahorcado {
 			cambiarEstadoPalabra(letra);		
 			sumarPuntaje(letra);	
 			agregarLetraAdivinada(letra);
+			if(adivinoPalabra())
+				cambiarPalabra();
 		} else {
 			quitarIntentos();
 		}
+	}
+
+	private boolean adivinoPalabra() {
+		// TODO Auto-generated method stub
+		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
 
 	public void adivinarLetra(String str) {
@@ -72,7 +79,7 @@ public class Ahorcado {
 	}
 	
 	/* Seria lo mismo que SetPalabra() */
-	public void cambiarPalabra() {
+	public void reiniciarJuego() {
 		String viejaPalabra = this.palabra;
 		String nuevaPalabra = elegirPalabra();
 		while(nuevaPalabra == viejaPalabra) {
@@ -82,7 +89,20 @@ public class Ahorcado {
 		restablecerIntentos();
 		restablecerPuntaje();
 		this.palabra = nuevaPalabra;
-		this.palabraConGuiones = convertirPalabraAGuiones(nuevaPalabra);
+		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
+	}
+	
+	public void cambiarPalabra() {
+		String viejaPalabra = this.palabra;
+		String nuevaPalabra = elegirPalabra();
+		
+		while(nuevaPalabra == viejaPalabra) 
+			nuevaPalabra = elegirPalabra();
+		
+		restablecerIntentos();
+		
+		this.palabra = nuevaPalabra;
+		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
 	}
 	
 	private void restablecerIntentos() {
@@ -98,18 +118,18 @@ public class Ahorcado {
 	}
 
 	private char[] convertirPalabraAGuiones(String palabra) {
-		this.palabraConGuiones = new char[palabra.length()];
+		this.palabraSecreta = new char[palabra.length()];
 
 		for (int i = 0; i < palabra.length(); i++) {
-			this.palabraConGuiones[i] = '-';
+			this.palabraSecreta[i] = '-';
 		}
-		return this.palabraConGuiones;
+		return this.palabraSecreta;
 	}
 
 	private void cambiarEstadoPalabra(char letra) {
-		for (int indice = 0; indice < this.palabraConGuiones.length; indice++) {
+		for (int indice = 0; indice < this.palabraSecreta.length; indice++) {
 			if (letra == this.palabra.charAt(indice)) {
-				this.palabraConGuiones[indice] = letra;
+				this.palabraSecreta[indice] = letra;
 			}
 		}
 	}

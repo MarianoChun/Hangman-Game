@@ -19,7 +19,7 @@ public class AhorcadoTest {
 		a.adivinarLetra('a');
 		String palabraEsperada = "-a-a";
 
-		assertEquals(palabraEsperada, a.obtenerPalabraAAdivinar());
+		assertEquals(palabraEsperada, a.obtenerPalabraSecreta());
 	}
 
 	@Test
@@ -53,9 +53,9 @@ public class AhorcadoTest {
 	public void agregarLetrasAdivinadas() {
 		a.adivinarLetra('a');
 		a.adivinarLetra('s');
-		int tamañoLetrasAdivinadas = a.getLetrasAdivinadas().size();
+		int tamaÃ±oLetrasAdivinadas = a.getLetrasAdivinadas().size();
 		
-		assertEquals(2, tamañoLetrasAdivinadas);
+		assertEquals(2, tamaÃ±oLetrasAdivinadas);
 	}
 	@Test
 	public void sumarPuntajeDeLetraAdivinada() {
@@ -68,7 +68,7 @@ public class AhorcadoTest {
 		a.adivinarLetra('c');
 		a.adivinarLetra('s');
 		
-		a.cambiarPalabra();
+		a.reiniciarJuego();
 		
 		assertEquals(0, a.getPuntaje());
 	}
@@ -77,7 +77,7 @@ public class AhorcadoTest {
 		a.adivinarLetra('t');
 		a.adivinarLetra('z');
 		
-		a.cambiarPalabra();
+		a.reiniciarJuego();
 		
 		assertEquals(6, a.getIntentos());		
 	}
@@ -88,12 +88,12 @@ public class AhorcadoTest {
 		ahorcado.adivinarLetra('e');
 		ahorcado.adivinarLetra('r');
 
-		ahorcado.cambiarPalabra();
+		ahorcado.reiniciarJuego();
 		
 		ahorcado.adivinarLetra('p');
 		ahorcado.adivinarLetra('e');
 		ahorcado.adivinarLetra('r');
-		String palabraNueva = ahorcado.obtenerPalabraAAdivinar();
+		String palabraNueva = ahorcado.obtenerPalabraSecreta();
 		
 		assertNotEquals("perr-", palabraNueva);		
 	}
