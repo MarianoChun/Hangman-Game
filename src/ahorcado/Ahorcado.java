@@ -47,6 +47,14 @@ public class Ahorcado {
 		}
 	}
 
+	public void adivinarLetra(String str) {
+		if(str.length() > 0){
+			char letra = str.charAt(0);
+			adivinarLetra(letra);
+		}
+			
+	}
+	
 	public boolean perdioJuego() {
 		return this.intentos == 0;
 	}

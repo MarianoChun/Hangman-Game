@@ -95,11 +95,8 @@ public class GUIAhorcado {
 		btnVerificarLetra.setEnabled(false);
 		btnVerificarLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				char letraUsuario = 0;
-				if (textLetraIngresada.getText().length() > 0) {
-					letraUsuario = textLetraIngresada.getText().charAt(0);
-				} 
-				ahorcado.adivinarLetra(letraUsuario);
+				String inputUsuario = textLetraIngresada.getText();
+				ahorcado.adivinarLetra(inputUsuario);
 				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
 				lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
 				lblIntentos.setText("Intentos: " + ahorcado.getIntentos());

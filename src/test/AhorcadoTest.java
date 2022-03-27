@@ -53,9 +53,9 @@ public class AhorcadoTest {
 	public void agregarLetrasAdivinadas() {
 		a.adivinarLetra('a');
 		a.adivinarLetra('s');
-		int tamaÃ±oLetrasAdivinadas = a.getLetrasAdivinadas().size();
+		int tamañoLetrasAdivinadas = a.getLetrasAdivinadas().size();
 		
-		assertEquals(2, tamaÃ±oLetrasAdivinadas);
+		assertEquals(2, tamañoLetrasAdivinadas);
 	}
 	@Test
 	public void sumarPuntajeDeLetraAdivinada() {
