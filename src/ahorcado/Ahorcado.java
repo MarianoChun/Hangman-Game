@@ -49,11 +49,6 @@ public class Ahorcado {
 		}
 	}
 
-	private boolean adivinoPalabra() {
-		// TODO Auto-generated method stub
-		return this.obtenerPalabraSecreta().equals(this.palabra);
-	}
-
 	public void adivinarLetra(String str) {
 		if(str.length() > 0){
 			char letra = str.charAt(0);
@@ -62,23 +57,6 @@ public class Ahorcado {
 			
 	}
 	
-	public boolean perdioJuego() {
-		return this.intentos == 0;
-	}
-	
-	public int getPuntaje() {
-		return puntaje;
-	}
-
-	public int getIntentos() {
-		return intentos;
-	}
-
-	public List<String> getLetrasAdivinadas() {
-		return letrasAdivinadas;
-	}
-	
-	/* Seria lo mismo que SetPalabra() */
 	public void reiniciarJuego() {
 		String viejaPalabra = this.palabra;
 		String nuevaPalabra = elegirPalabra();
@@ -103,6 +81,26 @@ public class Ahorcado {
 		
 		this.palabra = nuevaPalabra;
 		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
+	}
+	
+	public boolean perdioJuego() {
+		return this.intentos == 0;
+	}
+	
+	public boolean ganoJuego() {
+		return this.puntaje == 20;
+	}
+	
+	public int getPuntaje() {
+		return puntaje;
+	}
+
+	public int getIntentos() {
+		return intentos;
+	}
+
+	public List<String> getLetrasAdivinadas() {
+		return letrasAdivinadas;
 	}
 	
 	private void restablecerIntentos() {
@@ -157,6 +155,10 @@ public class Ahorcado {
 			this.intentos--;
 		}
 		
+	}
+	
+	private boolean adivinoPalabra() {
+		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
 
 }
