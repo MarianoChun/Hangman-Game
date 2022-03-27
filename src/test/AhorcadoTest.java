@@ -82,13 +82,13 @@ public class AhorcadoTest {
 		assertEquals(6, a.getIntentos());		
 	}
 	@Test
-	public void reiniciarJuegoTest() {
+	public void cambiarPalabraTest() {
 		Ahorcado ahorcado = new Ahorcado("perro");
 		ahorcado.adivinarLetra('p');
 		ahorcado.adivinarLetra('e');
 		ahorcado.adivinarLetra('r');
 
-		ahorcado.reiniciarJuego();
+		ahorcado.cambiarPalabra();;
 		
 		ahorcado.adivinarLetra('p');
 		ahorcado.adivinarLetra('e');
@@ -99,7 +99,7 @@ public class AhorcadoTest {
 	}
 	
 	@Test
-	public void perdioJuegoTest() {
+	public void siPerdioJuegoTest() {
 		Ahorcado ahorcado = new Ahorcado("pepito");
 		for (int i = 0; i < 6;i++) {
 			ahorcado.adivinarLetra('z');
@@ -107,4 +107,53 @@ public class AhorcadoTest {
 		assertEquals(true, ahorcado.perdioJuego());
 	}
 	
+	@Test
+	public void noPerdioJuegoTest() {
+		Ahorcado ahorcado = new Ahorcado("pepito");
+		
+		ahorcado.adivinarLetra('p');
+		ahorcado.adivinarLetra('z');
+		ahorcado.adivinarLetra('t');
+		
+		assertEquals(false, ahorcado.perdioJuego());
+	}
+	@Test
+	public void ganoJuegoPuntaje20Test() {
+		Ahorcado ahorcado = new Ahorcado("qwertyuiopasdfghjklñ");
+		String palabra = "qwertyuiopasdfghjklñ";
+		for(int i = 0;i < palabra.length();i++) {	
+			ahorcado.adivinarLetra(palabra.charAt(i));
+		}
+
+		assertEquals(true, ahorcado.ganoJuego());
+	}
+	@Test
+	public void ganoJuegoPuntaje0Test() {
+		assertEquals(false, a.ganoJuego());
+	}
+	@Test
+	public void ganoJuegoPuntaje5Test() {
+		Ahorcado ahorcado = new Ahorcado("taller");
+		ahorcado.adivinarLetra("t");
+		ahorcado.adivinarLetra("a");
+		ahorcado.adivinarLetra("l");
+		ahorcado.adivinarLetra("e");
+		ahorcado.adivinarLetra("r");
+
+
+		assertEquals(false, ahorcado.ganoJuego());
+	}
+	
+	@Test
+	public void puntajeMayusculasTest() {
+		Ahorcado ahorcado = new Ahorcado("holas");
+		ahorcado.adivinarLetra("H");
+		ahorcado.adivinarLetra("O");
+		ahorcado.adivinarLetra("L");
+		ahorcado.adivinarLetra("A");
+		ahorcado.adivinarLetra("S");
+
+
+		assertEquals(5, ahorcado.getPuntaje());
+	}
 }

@@ -20,7 +20,7 @@ public class Ahorcado {
 		this.intentos = DEFAULT_INTENTOS;
 		this.puntaje = 0;
 	}
-
+	/* Para test! */
 	public Ahorcado(String palabra) {
 		this.palabra = palabra;
 		this.palabraSecreta = convertirPalabraAGuiones(palabra);
@@ -38,6 +38,7 @@ public class Ahorcado {
 	}
 
 	public void adivinarLetra(char letra) {
+		letra = Character.toLowerCase(letra);
 		if (adivinoLetra(letra)) {
 			cambiarEstadoPalabra(letra);		
 			sumarPuntaje(letra);	
@@ -58,16 +59,8 @@ public class Ahorcado {
 	}
 	
 	public void reiniciarJuego() {
-		String viejaPalabra = this.palabra;
-		String nuevaPalabra = elegirPalabra();
-		while(nuevaPalabra == viejaPalabra) {
-			nuevaPalabra = elegirPalabra();
-		}
-
-		restablecerIntentos();
+		cambiarPalabra();	
 		restablecerPuntaje();
-		this.palabra = nuevaPalabra;
-		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
 	}
 	
 	public void cambiarPalabra() {
@@ -88,7 +81,10 @@ public class Ahorcado {
 	}
 	
 	public boolean ganoJuego() {
-		return this.puntaje == 20;
+		if(this.puntaje == 0) {
+			return false;
+		}
+		return this.puntaje % 20 == 0;
 	}
 	
 	public int getPuntaje() {
