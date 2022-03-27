@@ -2,19 +2,19 @@ package interfaz_juego;
 
 import java.awt.Color;
 import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import java.awt.event.ActionListener;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
 import ahorcado.Ahorcado;
-
-import java.awt.Font;
 
 public class GUIAhorcado {
 
@@ -27,6 +27,7 @@ public class GUIAhorcado {
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					GUIAhorcado window = new GUIAhorcado();
@@ -57,7 +58,7 @@ public class GUIAhorcado {
 		frmJuegoAhorcado.setTitle("Juego Ahorcado");
 		frmJuegoAhorcado.setBackground(Color.PINK);
 		frmJuegoAhorcado.setBounds(100, 100, 589, 375);
-		frmJuegoAhorcado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmJuegoAhorcado.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 		frmJuegoAhorcado.getContentPane().setLayout(null);
 
 		// inicializo ahorcado
@@ -86,7 +87,7 @@ public class GUIAhorcado {
 		lblPalabraConGuiones.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPalabraConGuiones.setBounds(162, 162, 218, 48);
 		frmJuegoAhorcado.getContentPane().add(lblPalabraConGuiones);
-		
+
 		// verificar letra ingresada
 		JButton btnVerificarLetra = new JButton("Verificar letra");
 		btnVerificarLetra.setBackground(new Color(245, 222, 179));
@@ -94,11 +95,12 @@ public class GUIAhorcado {
 		btnVerificarLetra.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVerificarLetra.setEnabled(false);
 		btnVerificarLetra.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				char letraUsuario = 0;
 				if (textLetraIngresada.getText().length() > 0) {
 					letraUsuario = textLetraIngresada.getText().charAt(0);
-				} 
+				}
 				ahorcado.adivinarLetra(letraUsuario);
 				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
 				lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
@@ -112,6 +114,7 @@ public class GUIAhorcado {
 		JButton btnCambiarPalabra = new JButton("Cambiar palabra");
 		btnCambiarPalabra.setEnabled(false);
 		btnCambiarPalabra.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				ahorcado.cambiarPalabra();
 				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
@@ -119,7 +122,7 @@ public class GUIAhorcado {
 				lblIntentos.setText("Intentos: "+ahorcado.getIntentos());
 			}
 		});
-		
+
 		btnCambiarPalabra.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCambiarPalabra.setBounds(204, 53, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(btnCambiarPalabra);
@@ -127,6 +130,7 @@ public class GUIAhorcado {
 		// comenzar juego
 		JButton btnStart = new JButton("Start");
 		btnStart.addActionListener(new ActionListener() {
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraAAdivinar().toString());
 				textLetraIngresada.setEnabled(true);
@@ -146,7 +150,7 @@ public class GUIAhorcado {
 		textLetraIngresada.setBounds(204, 237, 143, 20);
 		frmJuegoAhorcado.getContentPane().add(textLetraIngresada);
 		textLetraIngresada.setColumns(10);
-		
+
 		// restrinjo cantidad de caracteres que puede ingresar el usuario
 		RestrictedTextField restricted = new RestrictedTextField(textLetraIngresada);
 		restricted.setLimit(1);
