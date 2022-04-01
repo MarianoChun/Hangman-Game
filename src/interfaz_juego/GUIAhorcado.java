@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -20,9 +21,11 @@ import java.awt.Font;
 public class GUIAhorcado {
 
 	private JFrame frmJuegoAhorcado;
+	private JFrame frmMenu;
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
 	private JOptionPane panelPerdio = null;
+
 
 	/**
 	 * Launch the application.
@@ -32,7 +35,9 @@ public class GUIAhorcado {
 			public void run() {
 				try {
 					GUIAhorcado window = new GUIAhorcado();
-					window.frmJuegoAhorcado.setVisible(true);
+					window.frmMenu.setVisible(true);
+					// Comentado xq quiero abrir el juego desde el menu
+					//window.frmJuegoAhorcado.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -53,7 +58,62 @@ public class GUIAhorcado {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		// ventana
+		// Menu
+
+		frmMenu = new JFrame();
+		frmMenu.setForeground(Color.WHITE);
+		frmMenu.getContentPane().setForeground(Color.WHITE);
+		frmMenu.setResizable(false);
+		frmMenu.setTitle("Menu");
+		frmMenu.setBackground(Color.PINK);
+		frmMenu.setBounds(100, 100, 589, 375);
+		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMenu.getContentPane().setLayout(null);
+		frmMenu.setVisible(true);
+
+		JLabel lblMenuPrincipal = new JLabel("Menu Principal");
+		lblMenuPrincipal.setFont(new Font("Script MT Bold", Font.PLAIN, 17));
+		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMenuPrincipal.setBounds(185, 49, 133, 28);
+		frmMenu.getContentPane().add(lblMenuPrincipal);
+
+		JButton btnIniciarJuego = new JButton("Iniciar juego");
+		btnIniciarJuego.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmJuegoAhorcado.setVisible(true);
+				frmMenu.setVisible(false);
+			}
+		});
+		btnIniciarJuego.setBounds(185, 88, 117, 23);
+		frmMenu.getContentPane().add(btnIniciarJuego);
+
+		JComboBox<String> dificultadComboBox = new JComboBox<String>();
+		dificultadComboBox.setBounds(185, 152, 117, 22);
+		dificultadComboBox.addItem("Facil");
+		dificultadComboBox.addItem("Normal");
+		dificultadComboBox.addItem("Dificil");
+		frmMenu.getContentPane().add(dificultadComboBox);
+
+		JLabel lblNewLabel_1 = new JLabel("Dificultad");
+		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel_1.setFont(new Font("Script MT Bold", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(194, 125, 92, 14);
+		frmMenu.getContentPane().add(lblNewLabel_1);
+
+		JComboBox<String> idiomaComboBox = new JComboBox<String>();
+		idiomaComboBox.setBounds(185, 209, 117, 22);
+		idiomaComboBox.addItem("Español");
+		idiomaComboBox.addItem("Inglés");
+
+		frmMenu.getContentPane().add(idiomaComboBox);
+
+		JLabel idiomaLabel = new JLabel("Idioma");
+		idiomaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		idiomaLabel.setFont(new Font("Script MT Bold", Font.PLAIN, 14));
+		idiomaLabel.setBounds(195, 184, 92, 14);
+		frmMenu.getContentPane().add(idiomaLabel);
+				
+		// Juego
 		frmJuegoAhorcado = new JFrame();
 		frmJuegoAhorcado.setForeground(Color.WHITE);
 		frmJuegoAhorcado.getContentPane().setForeground(Color.WHITE);
@@ -63,8 +123,7 @@ public class GUIAhorcado {
 		frmJuegoAhorcado.setBounds(100, 100, 589, 375);
 		frmJuegoAhorcado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuegoAhorcado.getContentPane().setLayout(null);
-		
-
+				
 		// inicializo ahorcado
 		ahorcado = new Ahorcado();
 		
