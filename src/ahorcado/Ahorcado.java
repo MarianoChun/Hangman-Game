@@ -48,6 +48,7 @@ public class Ahorcado {
 			agregarLetraAdivinada(letra);
 			if(adivinoPalabra())
 				cambiarPalabra();
+				restablecerIntentos();
 		} else {
 			quitarIntentos();
 		}
@@ -64,6 +65,7 @@ public class Ahorcado {
 	public void reiniciarJuego() {
 		cambiarPalabra();	
 		restablecerPuntaje();
+		restablecerIntentos();
 	}
 	
 	public void cambiarPalabra() {
@@ -72,8 +74,6 @@ public class Ahorcado {
 		
 		while(nuevaPalabra == viejaPalabra) 
 			nuevaPalabra = elegirPalabra();
-		
-		restablecerIntentos();
 		
 		this.palabra = nuevaPalabra;
 		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
