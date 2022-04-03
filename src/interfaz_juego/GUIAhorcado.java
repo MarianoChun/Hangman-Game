@@ -24,7 +24,6 @@ public class GUIAhorcado extends JFrame{
 	private Ahorcado ahorcado;
 	private JOptionPane panelPerdio = null;
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -33,7 +32,6 @@ public class GUIAhorcado extends JFrame{
 			public void run() {
 				try {
 					GUIAhorcado window = new GUIAhorcado();
-					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
