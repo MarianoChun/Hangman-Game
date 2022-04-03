@@ -44,13 +44,13 @@ public class VentanaGano extends JDialog {
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		contentPanel.setLayout(null);
-		
+
 		JLabel lblNewLabel = new JLabel("¡Ganaste!");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setBounds(40, 11, 181, 45);
 		contentPanel.add(lblNewLabel);
-		
+
 		JLabel lbldeseasContinuar = new JLabel("¿Deseas continuar?");
 		lbldeseasContinuar.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		lbldeseasContinuar.setBounds(70, 67, 135, 14);
@@ -78,9 +78,9 @@ public class VentanaGano extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 		}
 	}
-	
+
 	public boolean apretoSi() {
 		return apretoSi();
 	}
-	
+
 }
