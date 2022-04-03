@@ -16,7 +16,7 @@ public class Menu extends JFrame {
 
 	private JFrame frmMenu;
 	private JComboBox dificultadComboBox;
-	private String idioma;
+	private JComboBox idiomaComboBox;
 	/**
 	 * Launch the application.
 	 */
@@ -94,9 +94,9 @@ public class Menu extends JFrame {
 		idiomaComboBox.setBounds(209, 223, 117, 22);
 		idiomaComboBox.addItem("Español");
 		idiomaComboBox.addItem("Inglés");
-
+		this.idiomaComboBox = idiomaComboBox;
 		frmMenu.getContentPane().add(idiomaComboBox);
-
+		
 		JLabel idiomaLabel = new JLabel("Idioma");
 		idiomaLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idiomaLabel.setFont(new Font("Dialog", Font.BOLD, 14));
@@ -107,6 +107,10 @@ public class Menu extends JFrame {
 	
 	public String getDificultad() {
 		return (String) this.dificultadComboBox.getSelectedItem();
+	}
+	
+	public String getIdioma() {
+		return (String) this.idiomaComboBox.getSelectedItem();
 	}
 
 }

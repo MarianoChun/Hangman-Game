@@ -73,6 +73,11 @@ public class GUIAhorcado extends JFrame {
 			ahorcado.setDificultadDifícil();
 		}
 
+		// Cambiar idioma
+		String idioma = menu.getIdioma();
+		if(idioma.equals("Inglés")) {
+			ahorcado.setIdiomaIngles();
+		}
 		// textos
 		JLabel lblPalabra = new JLabel("Palabra a adivinar");
 		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));

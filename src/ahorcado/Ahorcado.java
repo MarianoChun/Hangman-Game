@@ -6,6 +6,7 @@ import java.util.Random;
 
 public class Ahorcado {
 	private String[] palabras = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco", "bote" };
+	private String[] palabrasIngles = {"abruptly", "absurd", "abyss", "avenue","lucky", "length", "matrix", "night", "pixel", "programming", "waltz"};
 	private String palabra;
 	private List<String> letrasAdivinadas;
 	private char[] palabraSecreta;
@@ -107,7 +108,10 @@ public class Ahorcado {
 	public void setDificultadDifícil() {
 		this.intentos = DIFICIL_INTENTOS;
 	}
-	
+	public void setIdiomaIngles() {
+		this.palabras = palabrasIngles;
+		cambiarPalabra();
+	}
 	private void restablecerIntentos() {
 		this.intentos = DEFAULT_INTENTOS;
 	}
