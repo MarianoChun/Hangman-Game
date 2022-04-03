@@ -31,7 +31,7 @@ public class GUIAhorcado extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					GUIAhorcado window = new GUIAhorcado();
+					Menu menu = new Menu();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
