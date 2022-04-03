@@ -99,7 +99,6 @@ public class GUIAhorcado extends JFrame{
 		btnVerificarLetra.setBackground(new Color(245, 222, 179));
 		btnVerificarLetra.setForeground(new Color(0, 0, 0));
 		btnVerificarLetra.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnVerificarLetra.setEnabled(false);
 		btnVerificarLetra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
@@ -127,7 +126,6 @@ public class GUIAhorcado extends JFrame{
 		
 		// cambiar de palabra
 		JButton btnCambiarPalabra = new JButton("Reiniciar");
-		btnCambiarPalabra.setEnabled(false);
 		btnCambiarPalabra.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ahorcado.reiniciarJuego();
@@ -140,15 +138,10 @@ public class GUIAhorcado extends JFrame{
 		btnCambiarPalabra.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnCambiarPalabra.setBounds(204, 53, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(btnCambiarPalabra);
-
 		
-		
-
-
 		// letra ingresada por usuario
 		textLetraIngresada = new JTextField();
 		textLetraIngresada.setHorizontalAlignment(SwingConstants.CENTER);
-		textLetraIngresada.setEnabled(false);
 		textLetraIngresada.setBounds(204, 237, 143, 20);
 		frmJuegoAhorcado.getContentPane().add(textLetraIngresada);
 		textLetraIngresada.setColumns(10);
@@ -157,11 +150,8 @@ public class GUIAhorcado extends JFrame{
 		RestrictedTextField restricted = new RestrictedTextField(textLetraIngresada);
 		restricted.setLimit(1);
 		restricted.setOnlyText(true);
-	
-		empezar(lblPalabraConGuiones, btnVerificarLetra, btnCambiarPalabra);
+
 	}
-	
-	
 	
 	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
 		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
@@ -169,11 +159,4 @@ public class GUIAhorcado extends JFrame{
 		lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
 	}
 	
-	// comenzar juego
-	private void empezar(JLabel lblPalabraConGuiones, JButton btnVerificarLetra, JButton btnCambiarPalabra) {
-		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
-		textLetraIngresada.setEnabled(true);
-		btnVerificarLetra.setEnabled(true);
-		btnCambiarPalabra.setEnabled(true);
-	}
 }
