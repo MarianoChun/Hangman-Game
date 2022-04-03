@@ -65,13 +65,7 @@ public class GUIAhorcado extends JFrame {
 
 		// inicializo ahorcado
 		ahorcado = new Ahorcado();
-		String dificultad = menu.getDificultad();
-		if(dificultad.equals("Fácil")) {
-			ahorcado.setDificultadFácil();
-		}
-		if(dificultad.equals("Difícil")) {
-			ahorcado.setDificultadDifícil();
-		}
+		configurarDificultad();
 
 		// Cambiar idioma
 		String idioma = menu.getIdioma();
@@ -156,6 +150,16 @@ public class GUIAhorcado extends JFrame {
 		restricted.setOnlyText(true);
 		
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+	}
+
+	private void configurarDificultad() {
+		String dificultad = menu.getDificultad();
+		if(dificultad.equals("Fácil")) {
+			ahorcado.setDificultadFácil();
+		}
+		if(dificultad.equals("Difícil")) {
+			ahorcado.setDificultadDifícil();
+		}
 	}
 
 	// actualizar texto
