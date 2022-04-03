@@ -120,7 +120,6 @@ public class GUIAhorcado extends JFrame {
 
 		// cambiar de palabra
 		JButton btnReiniciar = new JButton("Reiniciar");
-		btnReiniciar.setEnabled(false);
 		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ahorcado.reiniciarJuego();
@@ -143,6 +142,8 @@ public class GUIAhorcado extends JFrame {
 		RestrictedTextField restricted = new RestrictedTextField(textLetraIngresada);
 		restricted.setLimit(1);
 		restricted.setOnlyText(true);
+		
+		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 	}
 
 	// actualizar texto
