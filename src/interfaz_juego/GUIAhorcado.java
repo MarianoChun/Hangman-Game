@@ -141,20 +141,9 @@ public class GUIAhorcado extends JFrame{
 		btnCambiarPalabra.setBounds(204, 53, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(btnCambiarPalabra);
 
-		// comenzar juego
-		JButton btnStart = new JButton("Start");
-		btnStart.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
-				textLetraIngresada.setEnabled(true);
-				btnVerificarLetra.setEnabled(true);
-				btnCambiarPalabra.setEnabled(true);
-			}
-		});
+		
+		
 
-		btnStart.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnStart.setBounds(204, 13, 143, 23);
-		frmJuegoAhorcado.getContentPane().add(btnStart);
 
 		// letra ingresada por usuario
 		textLetraIngresada = new JTextField();
@@ -169,12 +158,22 @@ public class GUIAhorcado extends JFrame{
 		restricted.setLimit(1);
 		restricted.setOnlyText(true);
 	
-		
+		empezar(lblPalabraConGuiones, btnVerificarLetra, btnCambiarPalabra);
 	}
+	
+	
 	
 	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
 		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
 		lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
 		lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
+	}
+	
+	// comenzar juego
+	private void empezar(JLabel lblPalabraConGuiones, JButton btnVerificarLetra, JButton btnCambiarPalabra) {
+		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
+		textLetraIngresada.setEnabled(true);
+		btnVerificarLetra.setEnabled(true);
+		btnCambiarPalabra.setEnabled(true);
 	}
 }

@@ -66,6 +66,7 @@ public class Menu extends JFrame{
 			public void actionPerformed(ActionEvent e) {
 				GUIAhorcado juego = new GUIAhorcado();
 				frmMenu.setVisible(false);
+				
 			}
 		});
 		btnIniciarJuego.setFont(new Font("Dialog", Font.PLAIN, 14));
