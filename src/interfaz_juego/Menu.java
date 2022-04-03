@@ -93,7 +93,7 @@ public class Menu extends JFrame {
 		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
 		idiomaComboBox.setBounds(209, 223, 117, 22);
 		idiomaComboBox.addItem("Español");
-		idiomaComboBox.addItem("Inglés");
+		idiomaComboBox.addItem("English");
 		this.idiomaComboBox = idiomaComboBox;
 		frmMenu.getContentPane().add(idiomaComboBox);
 		

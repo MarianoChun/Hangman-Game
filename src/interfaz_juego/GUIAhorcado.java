@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
+import java.util.Map;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -23,7 +25,10 @@ public class GUIAhorcado extends JFrame {
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
 	private JOptionPane panelPerdio = null;
+	private String idioma;
 	private static Menu menu;
+	
+	private Map<String,String> textos = new HashMap<String,String>();
 	/**
 	 * Launch the application.
 	 */
@@ -51,6 +56,7 @@ public class GUIAhorcado extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+
 		// Juego
 		frmJuegoAhorcado = new JFrame();
 		frmJuegoAhorcado.setForeground(Color.WHITE);
@@ -66,12 +72,8 @@ public class GUIAhorcado extends JFrame {
 		// inicializo ahorcado
 		ahorcado = new Ahorcado();
 		configurarDificultad();
-
 		// Cambiar idioma
-		String idioma = menu.getIdioma();
-		if(idioma.equals("Inglés")) {
-			ahorcado.setIdiomaIngles();
-		}
+		cambiarIdioma();
 		// textos
 		JLabel lblPalabra = new JLabel("Palabra a adivinar");
 		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));
@@ -152,6 +154,18 @@ public class GUIAhorcado extends JFrame {
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 	}
 
+	private void cambiarIdioma() {
+		String idioma = menu.getIdioma();
+		if(idioma.equals("English")) {
+			this.idioma = "English";
+			ahorcado.setIdiomaIngles();
+			buildIdiomaIngles();
+		} else {
+			this.idioma = "Español";
+			buildIdiomaEspañol();
+		}
+	}
+
 	private void configurarDificultad() {
 		String dificultad = menu.getDificultad();
 		if(dificultad.equals("Fácil")) {
@@ -165,9 +179,24 @@ public class GUIAhorcado extends JFrame {
 	// actualizar texto
 	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones,
 			JTextField textLetraIngresada) {
+		String textoPuntaje = textos.get("textoPuntaje");
+		String textoIntentos = textos.get("textoIntentos");
+		
 		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
-		lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
-		lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
+		lblPuntaje.setText(textoPuntaje + ": " + ahorcado.getPuntaje());
+		lblIntentos.setText(textoIntentos + ": " + ahorcado.getIntentos());
 		textLetraIngresada.setText("");
+	}
+	
+	private void buildIdiomaIngles() {
+		textos.put("textoPuntaje", "Score");
+		textos.put("textoIntentos", "Attempts");
+
+	}
+	
+	private void buildIdiomaEspañol() {
+		textos.put("textoPuntaje", "Puntaje");
+		textos.put("textoIntentos", "Intentos");
+
 	}
 }
