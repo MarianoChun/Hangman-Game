@@ -15,7 +15,8 @@ import java.awt.event.ActionEvent;
 public class Menu extends JFrame {
 
 	private JFrame frmMenu;
-
+	private JComboBox dificultadComboBox;
+	private String idioma;
 	/**
 	 * Launch the application.
 	 */
@@ -80,13 +81,14 @@ public class Menu extends JFrame {
 		dificultadComboBox.addItem("Normal");
 		dificultadComboBox.addItem("Difícil");
 		frmMenu.getContentPane().add(dificultadComboBox);
-
+		this.dificultadComboBox = dificultadComboBox;
+			
 		JLabel lblDificultad = new JLabel("Dificultad");
 		lblDificultad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDificultad.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblDificultad.setBounds(218, 139, 92, 14);
 		frmMenu.getContentPane().add(lblDificultad);
-
+	
 		JComboBox<String> idiomaComboBox = new JComboBox<String>();
 		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
 		idiomaComboBox.setBounds(209, 223, 117, 22);
@@ -100,6 +102,11 @@ public class Menu extends JFrame {
 		idiomaLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		idiomaLabel.setBounds(219, 198, 92, 14);
 		frmMenu.getContentPane().add(idiomaLabel);
+		
+	}
+	
+	public String getDificultad() {
+		return (String) this.dificultadComboBox.getSelectedItem();
 	}
 
 }

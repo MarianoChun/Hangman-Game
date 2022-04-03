@@ -11,7 +11,9 @@ public class Ahorcado {
 	private char[] palabraSecreta;
 	private int puntaje;
 	private int intentos;
+	private final int DIFICIL_INTENTOS = 4;
 	private final int DEFAULT_INTENTOS = 6;
+	private final int FACIL_INTENTOS = 8;
 	
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
@@ -97,6 +99,13 @@ public class Ahorcado {
 
 	public List<String> getLetrasAdivinadas() {
 		return letrasAdivinadas;
+	}
+	
+	public void setDificultadFácil() {
+		this.intentos = FACIL_INTENTOS;
+	}
+	public void setDificultadDifícil() {
+		this.intentos = DIFICIL_INTENTOS;
 	}
 	
 	private void restablecerIntentos() {

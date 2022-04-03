@@ -23,7 +23,7 @@ public class GUIAhorcado extends JFrame {
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
 	private JOptionPane panelPerdio = null;
-
+	private static Menu menu;
 	/**
 	 * Launch the application.
 	 */
@@ -31,7 +31,7 @@ public class GUIAhorcado extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu menu = new Menu();
+					menu = new Menu();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,6 +65,13 @@ public class GUIAhorcado extends JFrame {
 
 		// inicializo ahorcado
 		ahorcado = new Ahorcado();
+		String dificultad = menu.getDificultad();
+		if(dificultad.equals("Fácil")) {
+			ahorcado.setDificultadFácil();
+		}
+		if(dificultad.equals("Difícil")) {
+			ahorcado.setDificultadDifícil();
+		}
 
 		// textos
 		JLabel lblPalabra = new JLabel("Palabra a adivinar");
