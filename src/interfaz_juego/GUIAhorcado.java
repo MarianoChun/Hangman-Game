@@ -114,7 +114,7 @@ public class GUIAhorcado extends JFrame{
 						frmJuegoAhorcado.dispose();
 				}
 				
-				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones);
+				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 			}
 
 			
@@ -126,20 +126,18 @@ public class GUIAhorcado extends JFrame{
 		
 		
 		// cambiar de palabra
-		JButton btnCambiarPalabra = new JButton("Reiniciar");
-		btnCambiarPalabra.setEnabled(false);
-		btnCambiarPalabra.addActionListener(new ActionListener() {
+		JButton btnReiniciar = new JButton("Reiniciar");
+		btnReiniciar.setEnabled(false);
+		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ahorcado.reiniciarJuego();
-				lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
-				lblPuntaje.setText("Puntaje: "+ahorcado.getPuntaje());
-				lblIntentos.setText("Intentos: "+ahorcado.getIntentos());
+				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 			}
 		});
 		
-		btnCambiarPalabra.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnCambiarPalabra.setBounds(204, 53, 143, 23);
-		frmJuegoAhorcado.getContentPane().add(btnCambiarPalabra);
+		btnReiniciar.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnReiniciar.setBounds(204, 53, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(btnReiniciar);
 
 		
 		
@@ -158,15 +156,16 @@ public class GUIAhorcado extends JFrame{
 		restricted.setLimit(1);
 		restricted.setOnlyText(true);
 	
-		empezar(lblPalabraConGuiones, btnVerificarLetra, btnCambiarPalabra);
+		empezar(lblPalabraConGuiones, btnVerificarLetra, btnReiniciar);
 	}
 	
 	
 	
-	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
+	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones, JTextField textLetraIngresada) {
 		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
 		lblPuntaje.setText("Puntaje: " + ahorcado.getPuntaje());
 		lblIntentos.setText("Intentos: " + ahorcado.getIntentos());
+		textLetraIngresada.setText("");
 	}
 	
 	// comenzar juego
