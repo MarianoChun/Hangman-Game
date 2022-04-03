@@ -191,12 +191,16 @@ public class GUIAhorcado extends JFrame {
 	private void buildIdiomaIngles() {
 		textos.put("textoPuntaje", "Score");
 		textos.put("textoIntentos", "Attempts");
-
+		textos.put("reiniciar", "Restart");
+		textos.put("palabraAAdivinar", "Word to guess");
+		textos.put("verificarLetra", "Guess letter");
 	}
 	
 	private void buildIdiomaEspañol() {
 		textos.put("textoPuntaje", "Puntaje");
 		textos.put("textoIntentos", "Intentos");
-
+		textos.put("reiniciar", "Reiniciar");
+		textos.put("palabraAAdivinar", "Palabra a adivinar");
+		textos.put("verificarLetra", "Verificar letra");
 	}
 }
