@@ -27,8 +27,9 @@ public class GUIAhorcado extends JFrame {
 	private JOptionPane panelPerdio = null;
 	private String idioma;
 	private static Menu menu;
-	
-	private Map<String,String> textos = new HashMap<String,String>();
+
+	private Map<String, String> textos = new HashMap<String, String>();
+
 	/**
 	 * Launch the application.
 	 */
@@ -74,8 +75,9 @@ public class GUIAhorcado extends JFrame {
 		configurarDificultad();
 		// Cambiar idioma
 		cambiarIdioma();
+
 		// textos
-		JLabel lblPalabra = new JLabel("Palabra a adivinar");
+		JLabel lblPalabra = new JLabel(textos.get("palabraAAdivinar"));
 		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPalabra.setBounds(187, 117, 172, 34);
@@ -99,7 +101,7 @@ public class GUIAhorcado extends JFrame {
 		frmJuegoAhorcado.getContentPane().add(lblPalabraConGuiones);
 
 		// verificar letra ingresada
-		JButton btnVerificarLetra = new JButton("Verificar letra");
+		JButton btnVerificarLetra = new JButton(textos.get("verificarLetra"));
 		btnVerificarLetra.setBackground(new Color(245, 222, 179));
 		btnVerificarLetra.setForeground(new Color(0, 0, 0));
 		btnVerificarLetra.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -127,7 +129,7 @@ public class GUIAhorcado extends JFrame {
 		frmJuegoAhorcado.getContentPane().add(btnVerificarLetra);
 
 		// cambiar de palabra
-		JButton btnReiniciar = new JButton("Reiniciar");
+		JButton btnReiniciar = new JButton(textos.get("reiniciar"));
 		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ahorcado.reiniciarJuego();
@@ -150,13 +152,13 @@ public class GUIAhorcado extends JFrame {
 		RestrictedTextField restricted = new RestrictedTextField(textLetraIngresada);
 		restricted.setLimit(1);
 		restricted.setOnlyText(true);
-		
+
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 	}
 
 	private void cambiarIdioma() {
 		String idioma = menu.getIdioma();
-		if(idioma.equals("English")) {
+		if (idioma.equals("English")) {
 			this.idioma = "English";
 			ahorcado.setIdiomaIngles();
 			buildIdiomaIngles();
@@ -168,10 +170,10 @@ public class GUIAhorcado extends JFrame {
 
 	private void configurarDificultad() {
 		String dificultad = menu.getDificultad();
-		if(dificultad.equals("Fácil")) {
+		if (dificultad.equals("Fácil")) {
 			ahorcado.setDificultadFácil();
 		}
-		if(dificultad.equals("Difícil")) {
+		if (dificultad.equals("Difícil")) {
 			ahorcado.setDificultadDifícil();
 		}
 	}
@@ -181,13 +183,13 @@ public class GUIAhorcado extends JFrame {
 			JTextField textLetraIngresada) {
 		String textoPuntaje = textos.get("textoPuntaje");
 		String textoIntentos = textos.get("textoIntentos");
-		
+
 		lblPalabraConGuiones.setText(ahorcado.obtenerPalabraSecreta().toString());
 		lblPuntaje.setText(textoPuntaje + ": " + ahorcado.getPuntaje());
 		lblIntentos.setText(textoIntentos + ": " + ahorcado.getIntentos());
 		textLetraIngresada.setText("");
 	}
-	
+
 	private void buildIdiomaIngles() {
 		textos.put("textoPuntaje", "Score");
 		textos.put("textoIntentos", "Attempts");
@@ -195,7 +197,7 @@ public class GUIAhorcado extends JFrame {
 		textos.put("palabraAAdivinar", "Word to guess");
 		textos.put("verificarLetra", "Guess letter");
 	}
-	
+
 	private void buildIdiomaEspañol() {
 		textos.put("textoPuntaje", "Puntaje");
 		textos.put("textoIntentos", "Intentos");

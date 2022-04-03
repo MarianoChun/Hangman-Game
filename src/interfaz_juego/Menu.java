@@ -17,6 +17,7 @@ public class Menu extends JFrame {
 	private JFrame frmMenu;
 	private JComboBox dificultadComboBox;
 	private JComboBox idiomaComboBox;
+
 	/**
 	 * Launch the application.
 	 */
@@ -49,7 +50,7 @@ public class Menu extends JFrame {
 		frmMenu.setForeground(Color.WHITE);
 		frmMenu.getContentPane().setForeground(Color.WHITE);
 		frmMenu.setResizable(false);
-		frmMenu.setTitle("Menú Ahorcado");
+		frmMenu.setTitle("Juego Ahorcado");
 		frmMenu.setBackground(Color.PINK);
 		frmMenu.setBounds(100, 100, 589, 375);
 		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -82,13 +83,13 @@ public class Menu extends JFrame {
 		dificultadComboBox.addItem("Difícil");
 		frmMenu.getContentPane().add(dificultadComboBox);
 		this.dificultadComboBox = dificultadComboBox;
-			
+
 		JLabel lblDificultad = new JLabel("Dificultad");
 		lblDificultad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDificultad.setFont(new Font("Dialog", Font.BOLD, 14));
 		lblDificultad.setBounds(218, 139, 92, 14);
 		frmMenu.getContentPane().add(lblDificultad);
-	
+
 		JComboBox<String> idiomaComboBox = new JComboBox<String>();
 		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
 		idiomaComboBox.setBounds(209, 223, 117, 22);
@@ -96,19 +97,19 @@ public class Menu extends JFrame {
 		idiomaComboBox.addItem("English");
 		this.idiomaComboBox = idiomaComboBox;
 		frmMenu.getContentPane().add(idiomaComboBox);
-		
+
 		JLabel idiomaLabel = new JLabel("Idioma");
 		idiomaLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		idiomaLabel.setFont(new Font("Dialog", Font.BOLD, 14));
 		idiomaLabel.setBounds(219, 198, 92, 14);
 		frmMenu.getContentPane().add(idiomaLabel);
-		
+
 	}
-	
+
 	public String getDificultad() {
 		return (String) this.dificultadComboBox.getSelectedItem();
 	}
-	
+
 	public String getIdioma() {
 		return (String) this.idiomaComboBox.getSelectedItem();
 	}
