@@ -18,13 +18,16 @@ import Atxy2k.CustomTextField.RestrictedTextField;
 import ahorcado.Ahorcado;
 
 import java.awt.Font;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class GUIAhorcado extends JFrame {
 
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
-	private JOptionPane panelPerdio = null;
+	private JOptionPane panelGano = new JOptionPane();
+	private JOptionPane panelPerdio;
 	private String idioma;
 	private static Menu menu;
 
@@ -106,19 +109,13 @@ public class GUIAhorcado extends JFrame {
 		btnVerificarLetra.setForeground(new Color(0, 0, 0));
 		btnVerificarLetra.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		btnVerificarLetra.addActionListener(new ActionListener() {
+
+			@Override
 			public void actionPerformed(ActionEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
 				ahorcado.adivinarLetra(inputUsuario);
 
-				if (ahorcado.perdioJuego()) {
-					panelPerdio.showConfirmDialog(frmJuegoAhorcado, "¡Perdiste!, ¿Desea seguir jugando?", "",
-							JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
-					if (panelPerdio.YES_NO_OPTION == 0)
-						ahorcado.reiniciarJuego();
-					else
-						frmJuegoAhorcado.setVisible(false);
-					frmJuegoAhorcado.dispose();
-				}
+				finalizarOContinuarJuego();
 
 				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 			}
@@ -143,6 +140,19 @@ public class GUIAhorcado extends JFrame {
 
 		// letra ingresada por usuario
 		textLetraIngresada = new JTextField();
+		textLetraIngresada.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				String inputUsuario = textLetraIngresada.getText();
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					ahorcado.adivinarLetra(inputUsuario);
+
+					finalizarOContinuarJuego();
+
+					actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+				}
+			}
+		});
 		textLetraIngresada.setHorizontalAlignment(SwingConstants.CENTER);
 		textLetraIngresada.setBounds(204, 237, 143, 20);
 		frmJuegoAhorcado.getContentPane().add(textLetraIngresada);
@@ -154,6 +164,40 @@ public class GUIAhorcado extends JFrame {
 		restricted.setOnlyText(true);
 
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+	}
+
+	private void finalizarOContinuarJuego() {
+
+		if (ahorcado.perdioJuego()) {
+			perderJuego();
+		}
+
+		if (ahorcado.ganoJuego()) {
+			ganarJuego();
+		}
+	}
+
+	private void ganarJuego() {
+		int opcion = JOptionPane.showConfirmDialog(frmJuegoAhorcado, "¡Ganaste!, ¿Desea seguir jugando?", "",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+
+		if (opcion == 0) {
+			ahorcado.cambiarPalabra();
+		}
+		if (opcion == 1) {
+			System.exit(0);
+		}
+	}
+
+	private void perderJuego() {
+		int opcion = JOptionPane.showConfirmDialog(frmJuegoAhorcado, "¡Game Over!, ¿Desea seguir jugando?", "",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
+		if (opcion == 0) {
+			ahorcado.reiniciarJuego();
+		}
+		if (opcion == 1) {
+			System.exit(0);
+		}
 	}
 
 	private void cambiarIdioma() {

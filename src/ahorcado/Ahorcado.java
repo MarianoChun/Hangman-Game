@@ -14,16 +14,15 @@ public class Ahorcado {
 	private char[] palabraSecreta;
 	private int puntaje;
 	private int intentos;
-	private final int DIFICIL_INTENTOS = 4;
-	private final int DEFAULT_INTENTOS = 6;
-	private final int FACIL_INTENTOS = 8;
+	private String dificultad;
 
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
 		this.palabraSecreta = convertirPalabraAGuiones(this.palabra);
 		this.letrasAdivinadas = new LinkedList<String>();
-		this.intentos = DEFAULT_INTENTOS;
+		this.intentos = 6;
 		this.puntaje = 0;
+		this.dificultad = "Normal";
 	}
 
 	/* Para test! */
@@ -31,8 +30,9 @@ public class Ahorcado {
 		this.palabra = palabra;
 		this.palabraSecreta = convertirPalabraAGuiones(palabra);
 		this.letrasAdivinadas = new LinkedList<String>();
-		this.intentos = DEFAULT_INTENTOS;
+		this.intentos = 6;
 		this.puntaje = 0;
+		this.dificultad = "Normal";
 	}
 
 	public String obtenerPalabraSecreta() {
@@ -62,7 +62,6 @@ public class Ahorcado {
 			char letra = str.charAt(0);
 			adivinarLetra(letra);
 		}
-
 	}
 
 	public void reiniciarJuego() {
@@ -90,7 +89,7 @@ public class Ahorcado {
 		if (this.puntaje == 0) {
 			return false;
 		}
-		return this.puntaje % 20 == 0;
+		return this.puntaje % 2 == 0;
 	}
 
 	public int getPuntaje() {
@@ -106,11 +105,13 @@ public class Ahorcado {
 	}
 
 	public void setDificultadFácil() {
-		this.intentos = FACIL_INTENTOS;
+		this.dificultad = "Fácil";
+		this.intentos = 8;
 	}
 
 	public void setDificultadDifícil() {
-		this.intentos = DIFICIL_INTENTOS;
+		this.dificultad = "Difícil";
+		this.intentos = 4;
 	}
 
 	public void setIdiomaIngles() {
@@ -119,7 +120,15 @@ public class Ahorcado {
 	}
 
 	private void restablecerIntentos() {
-		this.intentos = DEFAULT_INTENTOS;
+		if (this.dificultad.equals("Fácil")) {
+			this.intentos = 8;
+		}
+		if (this.dificultad.equals("Difícil")) {
+			this.intentos = 4;
+		}
+		if (this.dificultad.equals("Normal")) {
+			this.intentos = 6;
+		}
 	}
 
 	private void restablecerPuntaje() {
