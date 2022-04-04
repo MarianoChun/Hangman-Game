@@ -26,7 +26,7 @@ public class GUIAhorcado extends JFrame {
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
-	private JOptionPane panelGano = new JOptionPane();
+	private JOptionPane panelGano;
 	private JOptionPane panelPerdio;
 	private String idioma;
 	private static Menu menu;
