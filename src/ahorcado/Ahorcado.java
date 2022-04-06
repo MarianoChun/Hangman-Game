@@ -1,17 +1,16 @@
 package ahorcado;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Ahorcado {
-	private String[] palabras = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco",
+	private String[] palabrasEspañol = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco",
 			"bote" };
 	private String[] palabrasIngles = { "abruptly", "absurd", "abyss", "avenue", "lucky", "length", "matrix", "night",
 			"pixel", "programming", "waltz" };
 	private String palabra;
-	private List<String> letrasAdivinadas;
 	private char[] palabraSecreta;
+	private ArrayList<String> letrasAdivinadas;
 	private int puntaje;
 	private int intentos;
 	private String dificultad;
@@ -19,7 +18,7 @@ public class Ahorcado {
 	public Ahorcado() {
 		this.palabra = elegirPalabra();
 		this.palabraSecreta = convertirPalabraAGuiones(this.palabra);
-		this.letrasAdivinadas = new LinkedList<String>();
+		this.letrasAdivinadas = new ArrayList<String>();
 		this.intentos = 6;
 		this.puntaje = 0;
 		this.dificultad = "Normal";
@@ -29,7 +28,7 @@ public class Ahorcado {
 	public Ahorcado(String palabra) {
 		this.palabra = palabra;
 		this.palabraSecreta = convertirPalabraAGuiones(palabra);
-		this.letrasAdivinadas = new LinkedList<String>();
+		this.letrasAdivinadas = new ArrayList<String>();
 		this.intentos = 6;
 		this.puntaje = 0;
 		this.dificultad = "Normal";
@@ -89,7 +88,7 @@ public class Ahorcado {
 		if (this.puntaje == 0) {
 			return false;
 		}
-		return this.puntaje % 2 == 0;
+		return this.puntaje % 20 == 0;
 	}
 
 	public int getPuntaje() {
@@ -100,10 +99,14 @@ public class Ahorcado {
 		return intentos;
 	}
 
-	public List<String> getLetrasAdivinadas() {
+	public ArrayList<String> getLetrasAdivinadas() {
 		return letrasAdivinadas;
 	}
-
+	
+	private void restablecerPuntaje() {
+		this.puntaje = 0;
+	}
+	
 	public void setDificultadFácil() {
 		this.dificultad = "Fácil";
 		this.intentos = 8;
@@ -115,10 +118,16 @@ public class Ahorcado {
 	}
 
 	public void setIdiomaIngles() {
-		this.palabras = palabrasIngles;
+		this.palabrasEspañol = this.palabrasIngles;
 		cambiarPalabra();
 	}
-
+	
+	private String elegirPalabra() {
+		Random random = new Random();
+		int elem = random.nextInt(this.palabrasEspañol.length);
+		return this.palabrasEspañol[elem];
+	}
+	
 	private void restablecerIntentos() {
 		if (this.dificultad.equals("Fácil")) {
 			this.intentos = 8;
@@ -129,16 +138,6 @@ public class Ahorcado {
 		if (this.dificultad.equals("Normal")) {
 			this.intentos = 6;
 		}
-	}
-
-	private void restablecerPuntaje() {
-		this.puntaje = 0;
-	}
-
-	private String elegirPalabra() {
-		Random random = new Random();
-		int elem = random.nextInt(this.palabras.length);
-		return this.palabras[elem];
 	}
 
 	private char[] convertirPalabraAGuiones(String palabra) {
@@ -164,12 +163,16 @@ public class Ahorcado {
 
 	private void agregarLetraAdivinada(char letra) {
 		if (!esLetraAdivinada(letra)) {
-			letrasAdivinadas.add("" + letra);
+			this.letrasAdivinadas.add("" + letra);
 		}
 	}
 
 	private boolean esLetraAdivinada(char letra) {
-		return letrasAdivinadas.contains("" + letra);
+		return this.letrasAdivinadas.contains("" + letra);
+	}
+	
+	private boolean adivinoPalabra() {
+		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
 
 	private void sumarPuntaje(char letra) {
@@ -182,11 +185,6 @@ public class Ahorcado {
 		if (this.intentos > 0) {
 			this.intentos--;
 		}
-
-	}
-
-	private boolean adivinoPalabra() {
-		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
 
 }
