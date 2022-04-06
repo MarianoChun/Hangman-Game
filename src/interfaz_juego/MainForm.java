@@ -21,14 +21,11 @@ import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class GUIAhorcado extends JFrame {
+public class MainForm extends JFrame {
 
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
-	private JOptionPane panelGano;
-	private JOptionPane panelPerdio;
-	private String idioma;
 	private static Menu menu;
 
 	private Map<String, String> textos = new HashMap<String, String>();
@@ -52,7 +49,7 @@ public class GUIAhorcado extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public GUIAhorcado() {
+	public MainForm() {
 		initialize();
 	}
 
@@ -203,11 +200,9 @@ public class GUIAhorcado extends JFrame {
 	private void cambiarIdioma() {
 		String idioma = menu.getIdioma();
 		if (idioma.equals("English")) {
-			this.idioma = "English";
 			ahorcado.setIdiomaIngles();
 			buildIdiomaIngles();
 		} else {
-			this.idioma = "Español";
 			buildIdiomaEspañol();
 		}
 	}

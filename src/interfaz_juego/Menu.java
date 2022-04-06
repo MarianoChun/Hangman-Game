@@ -66,7 +66,7 @@ public class Menu extends JFrame {
 		JButton btnIniciarJuego = new JButton("Iniciar juego");
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GUIAhorcado juego = new GUIAhorcado();
+				MainForm juego = new MainForm();
 				frmMenu.setVisible(false);
 
 			}
