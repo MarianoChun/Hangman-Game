@@ -3,7 +3,7 @@ package test;
 import static org.junit.Assert.*;
 import org.junit.*;
 
-import ahorcado.Ahorcado;
+import logica.Ahorcado;
 
 public class AhorcadoTest {
 	Ahorcado a;

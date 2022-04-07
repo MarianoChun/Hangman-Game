@@ -12,7 +12,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class Menu extends JFrame {
+public class MenuForm extends JFrame {
 
 	private JFrame frmMenu;
 	private JComboBox dificultadComboBox;
@@ -25,7 +25,7 @@ public class Menu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Menu window = new Menu();
+					MenuForm window = new MenuForm();
 					window.frmMenu.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -37,7 +37,7 @@ public class Menu extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public Menu() {
+	public MenuForm() {
 		initialize();
 	}
 

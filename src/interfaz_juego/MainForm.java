@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import Atxy2k.CustomTextField.RestrictedTextField;
-import ahorcado.Ahorcado;
+import logica.Ahorcado;
 
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
@@ -26,7 +26,7 @@ public class MainForm extends JFrame {
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
 	private Ahorcado ahorcado;
-	private static Menu menu;
+	private static MenuForm menu;
 	private Map<String, String> textos = new HashMap<String, String>();
 
 	/**
@@ -36,7 +36,7 @@ public class MainForm extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					menu = new Menu();
+					menu = new MenuForm();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
