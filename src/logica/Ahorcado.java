@@ -5,9 +5,9 @@ import java.util.Random;
 
 public class Ahorcado {
 	private String[] palabrasEspañol = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco",
-			"bote" };
+			"bote", "taller", "trabajo", "torta", "pupitre", "arbol" };
 	private String[] palabrasIngles = { "abruptly", "absurd", "abyss", "avenue", "lucky", "length", "matrix", "night",
-			"pixel", "programming", "waltz" };
+			"pixel", "programming", "waltz" , "airplane", "acommodation", };
 	private String palabra;
 	private char[] palabraSecreta;
 	private ArrayList<String> letrasAdivinadas;
