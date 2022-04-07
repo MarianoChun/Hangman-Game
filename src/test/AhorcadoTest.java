@@ -192,4 +192,15 @@ public class AhorcadoTest {
 		
 		assertEquals(INTENTOS_DIFICIL, ahorcado.getIntentos());
 	}
+	
+	@Test
+	public void intentosFallarYAcertarTest() {
+		Ahorcado ahorcado = new Ahorcado("Hello");
+		
+		ahorcado.adivinarLetra('a');
+		ahorcado.adivinarLetra('l');
+		
+		assertEquals(5, ahorcado.getIntentos());
+	}
+	
 }
