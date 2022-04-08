@@ -164,43 +164,23 @@ public class AhorcadoTest {
 
 		assertEquals(5, ahorcado.getPuntaje());
 	}
-	
-	@Test
-	public void setDificultadFacilTest() {
-		Ahorcado ahorcado = new Ahorcado();
-		int INTENTOS_FACIL = 8;
-		
-		ahorcado.setDificultadFácil();
-		
-		assertEquals(INTENTOS_FACIL, ahorcado.getIntentos());
-	}
-	
+
 	@Test
 	public void dificultadNormalTest() {
 		Ahorcado ahorcado = new Ahorcado();
 		int INTENTOS_DEFAULT = 6;
-		
+
 		assertEquals(INTENTOS_DEFAULT, ahorcado.getIntentos());
 	}
-	
-	@Test
-	public void setDificultadDificilTest() {
-		Ahorcado ahorcado = new Ahorcado();
-		int INTENTOS_DIFICIL = 4;
-		
-		ahorcado.setDificultadDifícil();
-		
-		assertEquals(INTENTOS_DIFICIL, ahorcado.getIntentos());
-	}
-	
+
 	@Test
 	public void intentosFallarYAcertarTest() {
 		Ahorcado ahorcado = new Ahorcado("Hello");
-		
+
 		ahorcado.adivinarLetra('a');
 		ahorcado.adivinarLetra('l');
-		
+
 		assertEquals(5, ahorcado.getIntentos());
 	}
-	
+
 }

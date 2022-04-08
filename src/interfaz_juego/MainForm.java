@@ -21,7 +21,7 @@ import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class MainForm extends JFrame {
+public class MainForm {
 
 	private JFrame frmJuegoAhorcado;
 	private JTextField textLetraIngresada;
@@ -62,8 +62,9 @@ public class MainForm extends JFrame {
 
 		// Inicializo ahorcado
 		ahorcado = new Ahorcado();
+
 		configurarDificultad();
-		
+
 		// Cambiar idioma
 		cambiarIdioma();
 
@@ -83,8 +84,8 @@ public class MainForm extends JFrame {
 
 		// Letra ingresada por usuario
 		crearTxtFieldLetraIngresadaJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones);
-		
-		//Actualizar texto
+
+		// Actualizar texto
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 	}
 
@@ -96,6 +97,7 @@ public class MainForm extends JFrame {
 				String inputUsuario = textLetraIngresada.getText();
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					ahorcado.adivinarLetra(inputUsuario);
+					ahorcado.adivinarPalabra();
 
 					finalizarOContinuarJuego();
 
@@ -143,6 +145,7 @@ public class MainForm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
 				ahorcado.adivinarLetra(inputUsuario);
+				ahorcado.adivinarPalabra();
 
 				finalizarOContinuarJuego();
 
@@ -202,11 +205,9 @@ public class MainForm extends JFrame {
 	}
 
 	private void finalizarOContinuarJuego() {
-
 		if (ahorcado.perdioJuego()) {
 			perderJuego();
 		}
-
 		if (ahorcado.ganoJuego()) {
 			ganarJuego();
 		}
@@ -247,12 +248,7 @@ public class MainForm extends JFrame {
 
 	private void configurarDificultad() {
 		String dificultad = menu.getDificultad();
-		if (dificultad.equals("Fácil")) {
-			ahorcado.setDificultadFácil();
-		}
-		if (dificultad.equals("Difícil")) {
-			ahorcado.setDificultadDifícil();
-		}
+		ahorcado.cambiarDificultad(dificultad);
 	}
 
 	// actualizar texto

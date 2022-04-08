@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ahorcado {
-	private String[] palabrasEspañol = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse", "barco",
-			"bote", "taller", "trabajo", "torta", "pupitre", "arbol" };
+	private String[] palabrasEspañol = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse",
+			"barco", "bote", "taller", "trabajo", "torta", "pupitre", "arboleda" };
 	private String[] palabrasIngles = { "abruptly", "absurd", "abyss", "avenue", "lucky", "length", "matrix", "night",
-			"pixel", "programming", "waltz" , "airplane", "acommodation", };
+			"pixel", "programming", "waltz", "airplane", "acommodation", };
 	private String palabra;
 	private char[] palabraSecreta;
 	private ArrayList<String> letrasAdivinadas;
@@ -48,10 +48,6 @@ public class Ahorcado {
 			cambiarEstadoPalabra(letra);
 			sumarPuntaje(letra);
 			agregarLetraAdivinada(letra);
-			if (adivinoPalabra()) {
-				cambiarPalabra();
-				restablecerIntentos();
-			}
 		} else {
 			quitarIntentos();
 		}
@@ -64,10 +60,11 @@ public class Ahorcado {
 		}
 	}
 
-	public void reiniciarJuego() {
-		cambiarPalabra();
-		restablecerPuntaje();
-		restablecerIntentos();
+	public void adivinarPalabra() {
+		if (adivinoPalabra()) {
+			cambiarPalabra();
+			restablecerIntentos();
+		}
 	}
 
 	public void cambiarPalabra() {
@@ -81,6 +78,23 @@ public class Ahorcado {
 		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
 	}
 
+	public void cambiarDificultad(String dificultad) {
+		if (dificultad.equals("Fácil")) {
+			this.dificultad = dificultad;
+			this.intentos = 8;
+		}
+		if (dificultad.equals("Difícil")) {
+			this.dificultad = dificultad;
+			this.intentos = 4;
+		}
+	}
+
+	public void reiniciarJuego() {
+		cambiarPalabra();
+		restablecerPuntaje();
+		restablecerIntentos();
+	}
+
 	public boolean perdioJuego() {
 		return this.intentos == 0;
 	}
@@ -92,6 +106,10 @@ public class Ahorcado {
 		return this.puntaje % 20 == 0;
 	}
 
+	public ArrayList<String> getLetrasAdivinadas() {
+		return letrasAdivinadas;
+	}
+
 	public int getPuntaje() {
 		return puntaje;
 	}
@@ -100,35 +118,17 @@ public class Ahorcado {
 		return intentos;
 	}
 
-	public ArrayList<String> getLetrasAdivinadas() {
-		return letrasAdivinadas;
-	}
-	
-	private void restablecerPuntaje() {
-		this.puntaje = 0;
-	}
-	
-	public void setDificultadFácil() {
-		this.dificultad = "Fácil";
-		this.intentos = 8;
-	}
-
-	public void setDificultadDifícil() {
-		this.dificultad = "Difícil";
-		this.intentos = 4;
-	}
-
 	public void setIdiomaIngles() {
 		this.palabrasEspañol = this.palabrasIngles;
 		cambiarPalabra();
 	}
-	
+
 	private String elegirPalabra() {
 		Random random = new Random();
 		int elem = random.nextInt(this.palabrasEspañol.length);
 		return this.palabrasEspañol[elem];
 	}
-	
+
 	private void restablecerIntentos() {
 		if (this.dificultad.equals("Fácil")) {
 			this.intentos = 8;
@@ -151,29 +151,11 @@ public class Ahorcado {
 	}
 
 	private void cambiarEstadoPalabra(char letra) {
-		for (int indice = 0; indice < this.palabraSecreta.length; indice++) {
-			if (letra == this.palabra.charAt(indice)) {
-				this.palabraSecreta[indice] = letra;
+		for (int i = 0; i < this.palabraSecreta.length; i++) {
+			if (letra == this.palabra.charAt(i)) {
+				this.palabraSecreta[i] = letra;
 			}
 		}
-	}
-
-	private boolean adivinoLetra(char letra) {
-		return this.palabra.contains("" + letra);
-	}
-
-	private void agregarLetraAdivinada(char letra) {
-		if (!esLetraAdivinada(letra)) {
-			this.letrasAdivinadas.add("" + letra);
-		}
-	}
-
-	private boolean esLetraAdivinada(char letra) {
-		return this.letrasAdivinadas.contains("" + letra);
-	}
-	
-	private boolean adivinoPalabra() {
-		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
 
 	private void sumarPuntaje(char letra) {
@@ -182,10 +164,32 @@ public class Ahorcado {
 		}
 	}
 
+	private void restablecerPuntaje() {
+		this.puntaje = 0;
+	}
+
+	private void agregarLetraAdivinada(char letra) {
+		if (!esLetraAdivinada(letra)) {
+			this.letrasAdivinadas.add("" + letra);
+		}
+	}
+
 	private void quitarIntentos() {
 		if (this.intentos > 0) {
 			this.intentos--;
 		}
+	}
+
+	private boolean adivinoLetra(char letra) {
+		return this.palabra.contains("" + letra);
+	}
+
+	private boolean esLetraAdivinada(char letra) {
+		return this.letrasAdivinadas.contains("" + letra);
+	}
+
+	private boolean adivinoPalabra() {
+		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
 
 }

@@ -12,11 +12,11 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class MenuForm extends JFrame {
+public class MenuForm {
 
 	private JFrame frmMenu;
-	private JComboBox dificultadComboBox;
-	private JComboBox idiomaComboBox;
+	private JComboBox<String> dificultadComboBox;
+	private JComboBox<String> idiomaComboBox;
 
 	/**
 	 * Launch the application.
@@ -100,9 +100,8 @@ public class MenuForm extends JFrame {
 		JButton btnIniciarJuego = new JButton("Iniciar juego");
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				MainForm juego = new MainForm();
+				new MainForm();
 				frmMenu.setVisible(false);
-
 			}
 		});
 		btnIniciarJuego.setFont(new Font("Dialog", Font.PLAIN, 14));
