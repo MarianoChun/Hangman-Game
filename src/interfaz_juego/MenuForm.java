@@ -45,24 +45,58 @@ public class MenuForm extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmMenu = new JFrame();
-		frmMenu.getContentPane().setFont(new Font("Dialog", Font.BOLD, 14));
-		frmMenu.setForeground(Color.WHITE);
-		frmMenu.getContentPane().setForeground(Color.WHITE);
-		frmMenu.setResizable(false);
-		frmMenu.setTitle("Juego Ahorcado");
-		frmMenu.setBackground(Color.PINK);
-		frmMenu.setBounds(100, 100, 589, 375);
-		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmMenu.getContentPane().setLayout(null);
-		frmMenu.setVisible(true);
+		crearFormMenu();
 
-		JLabel lblMenuPrincipal = new JLabel("Menú Principal");
-		lblMenuPrincipal.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
-		lblMenuPrincipal.setBounds(209, 63, 133, 28);
-		frmMenu.getContentPane().add(lblMenuPrincipal);
+		crearLabelMenuPrincipal();
 
+		crearBotonIniciarJuego();
+
+		crearDificultadComboBox();
+
+		crearLabelDificultad();
+
+		crearIdiomaComboBox();
+
+		crearLabelIdioma();
+	}
+
+	private void crearLabelIdioma() {
+		JLabel idiomaLabel = new JLabel("Idioma");
+		idiomaLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		idiomaLabel.setFont(new Font("Dialog", Font.BOLD, 14));
+		idiomaLabel.setBounds(219, 198, 92, 14);
+		frmMenu.getContentPane().add(idiomaLabel);
+	}
+
+	private void crearIdiomaComboBox() {
+		JComboBox<String> idiomaComboBox = new JComboBox<String>();
+		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
+		idiomaComboBox.setBounds(209, 223, 117, 22);
+		idiomaComboBox.addItem("Español");
+		idiomaComboBox.addItem("English");
+		this.idiomaComboBox = idiomaComboBox;
+		frmMenu.getContentPane().add(idiomaComboBox);
+	}
+
+	private void crearLabelDificultad() {
+		JLabel lblDificultad = new JLabel("Dificultad");
+		lblDificultad.setHorizontalAlignment(SwingConstants.CENTER);
+		lblDificultad.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblDificultad.setBounds(218, 139, 92, 14);
+		frmMenu.getContentPane().add(lblDificultad);
+	}
+
+	private void crearDificultadComboBox() {
+		this.dificultadComboBox = new JComboBox<String>();
+		dificultadComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
+		dificultadComboBox.setBounds(209, 166, 117, 22);
+		dificultadComboBox.addItem("Fácil");
+		dificultadComboBox.addItem("Normal");
+		dificultadComboBox.addItem("Difícil");
+		frmMenu.getContentPane().add(dificultadComboBox);
+	}
+
+	private void crearBotonIniciarJuego() {
 		JButton btnIniciarJuego = new JButton("Iniciar juego");
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -74,36 +108,28 @@ public class MenuForm extends JFrame {
 		btnIniciarJuego.setFont(new Font("Dialog", Font.PLAIN, 14));
 		btnIniciarJuego.setBounds(209, 102, 117, 26);
 		frmMenu.getContentPane().add(btnIniciarJuego);
+	}
 
-		JComboBox<String> dificultadComboBox = new JComboBox<String>();
-		dificultadComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
-		dificultadComboBox.setBounds(209, 166, 117, 22);
-		dificultadComboBox.addItem("Fácil");
-		dificultadComboBox.addItem("Normal");
-		dificultadComboBox.addItem("Difícil");
-		frmMenu.getContentPane().add(dificultadComboBox);
-		this.dificultadComboBox = dificultadComboBox;
+	private void crearLabelMenuPrincipal() {
+		JLabel lblMenuPrincipal = new JLabel("Menú Principal");
+		lblMenuPrincipal.setFont(new Font("Dialog", Font.BOLD, 14));
+		lblMenuPrincipal.setHorizontalAlignment(SwingConstants.CENTER);
+		lblMenuPrincipal.setBounds(209, 63, 133, 28);
+		frmMenu.getContentPane().add(lblMenuPrincipal);
+	}
 
-		JLabel lblDificultad = new JLabel("Dificultad");
-		lblDificultad.setHorizontalAlignment(SwingConstants.CENTER);
-		lblDificultad.setFont(new Font("Dialog", Font.BOLD, 14));
-		lblDificultad.setBounds(218, 139, 92, 14);
-		frmMenu.getContentPane().add(lblDificultad);
-
-		JComboBox<String> idiomaComboBox = new JComboBox<String>();
-		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
-		idiomaComboBox.setBounds(209, 223, 117, 22);
-		idiomaComboBox.addItem("Español");
-		idiomaComboBox.addItem("English");
-		this.idiomaComboBox = idiomaComboBox;
-		frmMenu.getContentPane().add(idiomaComboBox);
-
-		JLabel idiomaLabel = new JLabel("Idioma");
-		idiomaLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		idiomaLabel.setFont(new Font("Dialog", Font.BOLD, 14));
-		idiomaLabel.setBounds(219, 198, 92, 14);
-		frmMenu.getContentPane().add(idiomaLabel);
-
+	private void crearFormMenu() {
+		this.frmMenu = new JFrame();
+		frmMenu.getContentPane().setFont(new Font("Dialog", Font.BOLD, 14));
+		frmMenu.setForeground(Color.WHITE);
+		frmMenu.getContentPane().setForeground(Color.WHITE);
+		frmMenu.setResizable(false);
+		frmMenu.setTitle("Juego Ahorcado");
+		frmMenu.setBackground(Color.PINK);
+		frmMenu.setBounds(100, 100, 589, 375);
+		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmMenu.getContentPane().setLayout(null);
+		frmMenu.setVisible(true);
 	}
 
 	public String getDificultad() {
