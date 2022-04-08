@@ -165,10 +165,6 @@ public class Ahorcado {
 		}
 	}
 
-	private void restablecerPuntaje() {
-		this.puntaje = 0;
-	}
-
 	private void agregarLetraAdivinada(char letra) {
 		if (!esLetraAdivinada(letra)) {
 			this.letrasAdivinadas.add("" + letra);
@@ -180,7 +176,15 @@ public class Ahorcado {
 			this.intentos--;
 		}
 	}
-
+	
+	private void restablecerPuntaje() {
+		this.puntaje = 0;
+	}
+	
+	private void reiniciarLetrasAdivinadas() {
+		this.letrasAdivinadas.clear();
+	}
+	
 	private boolean adivinoLetra(char letra) {
 		return this.palabra.contains("" + letra);
 	}
@@ -192,9 +196,4 @@ public class Ahorcado {
 	private boolean adivinoPalabra() {
 		return this.obtenerPalabraSecreta().equals(this.palabra);
 	}
-	
-	private void reiniciarLetrasAdivinadas() {
-		letrasAdivinadas.clear();
-	}
-
 }

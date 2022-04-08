@@ -47,6 +47,7 @@ public class MainForm {
 
 	/**
 	 * Create the application.
+	 * @wbp.parser.entryPoint
 	 */
 	public MainForm() {
 		initialize();
@@ -122,6 +123,7 @@ public class MainForm {
 
 	private void crearBtnReiniciarJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
 		JButton btnReiniciar = new JButton(textos.get("reiniciar"));
+		btnReiniciar.setBackground(new Color(255, 255, 204));
 		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ahorcado.reiniciarJuego();
@@ -169,7 +171,7 @@ public class MainForm {
 
 	private JLabel crearLblIntentosJuego() {
 		JLabel lblIntentos = new JLabel(textos.get("textoIntentos") + ": " + ahorcado.getIntentos());
-		lblIntentos.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblIntentos.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblIntentos.setBounds(479, 11, 84, 23);
 		frmJuegoAhorcado.getContentPane().add(lblIntentos);
 		return lblIntentos;
@@ -177,7 +179,7 @@ public class MainForm {
 
 	private JLabel crearLblPuntajeJuego() {
 		JLabel lblPuntaje = new JLabel(textos.get("textoPuntaje") + ": " + ahorcado.getPuntaje());
-		lblPuntaje.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblPuntaje.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblPuntaje.setBounds(10, 11, 93, 23);
 		frmJuegoAhorcado.getContentPane().add(lblPuntaje);
 		return lblPuntaje;
@@ -193,6 +195,7 @@ public class MainForm {
 
 	private void crearDiseñoJuego() {
 		frmJuegoAhorcado = new JFrame();
+		frmJuegoAhorcado.getContentPane().setBackground(new Color(204, 204, 255));
 		frmJuegoAhorcado.setForeground(Color.WHITE);
 		frmJuegoAhorcado.getContentPane().setForeground(Color.WHITE);
 		frmJuegoAhorcado.setResizable(false);

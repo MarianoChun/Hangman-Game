@@ -58,6 +58,8 @@ public class MenuForm {
 		crearIdiomaComboBox();
 
 		crearLabelIdioma();
+		
+		crearLabelTitulo();
 	}
 
 	private void crearLabelIdioma() {
@@ -67,9 +69,18 @@ public class MenuForm {
 		idiomaLabel.setBounds(219, 198, 92, 14);
 		frmMenu.getContentPane().add(idiomaLabel);
 	}
+	
+	private void crearLabelTitulo() {
+		JLabel lblElAhorcado = new JLabel("El Ahorcado");
+		lblElAhorcado.setFont(new Font("Dialog", Font.BOLD, 20));
+		lblElAhorcado.setHorizontalAlignment(SwingConstants.CENTER);
+		lblElAhorcado.setBounds(198, 11, 133, 28);
+		frmMenu.getContentPane().add(lblElAhorcado);
+	}
 
 	private void crearIdiomaComboBox() {
 		JComboBox<String> idiomaComboBox = new JComboBox<String>();
+		idiomaComboBox.setBackground(new Color(255, 255, 204));
 		idiomaComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
 		idiomaComboBox.setBounds(209, 223, 117, 22);
 		idiomaComboBox.addItem("Español");
@@ -88,6 +99,7 @@ public class MenuForm {
 
 	private void crearDificultadComboBox() {
 		this.dificultadComboBox = new JComboBox<String>();
+		dificultadComboBox.setBackground(new Color(255, 255, 204));
 		dificultadComboBox.setFont(new Font("Dialog", Font.PLAIN, 14));
 		dificultadComboBox.setBounds(209, 166, 117, 22);
 		dificultadComboBox.addItem("Fácil");
@@ -98,6 +110,7 @@ public class MenuForm {
 
 	private void crearBotonIniciarJuego() {
 		JButton btnIniciarJuego = new JButton("Iniciar juego");
+		btnIniciarJuego.setBackground(new Color(255, 255, 204));
 		btnIniciarJuego.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new MainForm();
@@ -119,6 +132,7 @@ public class MenuForm {
 
 	private void crearFormMenu() {
 		this.frmMenu = new JFrame();
+		frmMenu.getContentPane().setBackground(new Color(204, 204, 255));
 		frmMenu.getContentPane().setFont(new Font("Dialog", Font.BOLD, 14));
 		frmMenu.setForeground(Color.WHITE);
 		frmMenu.getContentPane().setForeground(Color.WHITE);
