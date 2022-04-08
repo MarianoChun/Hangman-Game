@@ -183,4 +183,17 @@ public class AhorcadoTest {
 		assertEquals(5, ahorcado.getIntentos());
 	}
 
+	@Test
+	public void reiniciarLetrasAdivinadasTest() {
+		Ahorcado ahorcado = new Ahorcado("a");
+		ahorcado.adivinarLetra('a');
+		ahorcado.adivinarPalabra();
+	
+		
+		// Despues de adivinar una palabra, deberia reiniciarse esta lista a una sin letras.
+		int tamañoLetrasAdivinadas = ahorcado.getLetrasAdivinadas().size();
+		
+		assertEquals(0, tamañoLetrasAdivinadas);
+	}
+	
 }

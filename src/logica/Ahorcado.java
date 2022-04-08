@@ -64,6 +64,7 @@ public class Ahorcado {
 		if (adivinoPalabra()) {
 			cambiarPalabra();
 			restablecerIntentos();
+			reiniciarLetrasAdivinadas();
 		}
 	}
 
@@ -190,6 +191,10 @@ public class Ahorcado {
 
 	private boolean adivinoPalabra() {
 		return this.obtenerPalabraSecreta().equals(this.palabra);
+	}
+	
+	private void reiniciarLetrasAdivinadas() {
+		letrasAdivinadas.clear();
 	}
 
 }
