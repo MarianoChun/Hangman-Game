@@ -120,13 +120,22 @@ public class MainForm {
 		restricted.setLimit(limite);
 		restricted.setOnlyText(true);
 	}
+	
+	private void ventanaReiniciarJuego() {
+		int opcion = JOptionPane.showConfirmDialog(frmJuegoAhorcado, "¿Estás seguro?, perderas todo el puntaje acumulado.", "",
+				JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null);
 
+		if (opcion == 0) {
+			ahorcado.reiniciarJuego();
+		}
+		
+	}
 	private void crearBtnReiniciarJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
 		JButton btnReiniciar = new JButton(textos.get("reiniciar"));
 		btnReiniciar.setBackground(new Color(255, 255, 204));
 		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ahorcado.reiniciarJuego();
+				ventanaReiniciarJuego();
 				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
 			}
 		});
