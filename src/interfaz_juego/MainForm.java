@@ -88,6 +88,15 @@ public class MainForm {
 
 		// Actualizar texto
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+		
+		JLabel lblTextoLetrasYaIngresadas = new JLabel("Letras ya ingresadas");
+		lblTextoLetrasYaIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoLetrasYaIngresadas.setBounds(204, 92, 129, 14);
+		frmJuegoAhorcado.getContentPane().add(lblTextoLetrasYaIngresadas);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setBounds(204, 117, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(lblNewLabel_1);
 	}
 
 	private void crearTxtFieldLetraIngresadaJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
@@ -97,8 +106,7 @@ public class MainForm {
 			public void keyPressed(KeyEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					ahorcado.adivinarLetra(inputUsuario);
-					ahorcado.adivinarPalabra();
+					ahorcado.jugar(inputUsuario);
 
 					finalizarOContinuarJuego();
 
@@ -155,8 +163,7 @@ public class MainForm {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				String inputUsuario = textLetraIngresada.getText();
-				ahorcado.adivinarLetra(inputUsuario);
-				ahorcado.adivinarPalabra();
+				ahorcado.jugar(inputUsuario);
 
 				finalizarOContinuarJuego();
 
@@ -195,11 +202,11 @@ public class MainForm {
 	}
 
 	private void crearLblPalabraJuego() {
-		JLabel lblPalabra = new JLabel(textos.get("palabraAAdivinar"));
-		lblPalabra.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblPalabra.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPalabra.setBounds(187, 117, 172, 34);
-		frmJuegoAhorcado.getContentPane().add(lblPalabra);
+		JLabel lblLetrasIngresadas = new JLabel(textos.get("palabraAAdivinar"));
+		lblLetrasIngresadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblLetrasIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLetrasIngresadas.setBounds(204, 117, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(lblLetrasIngresadas);
 	}
 
 	private void crearDiseñoJuego() {

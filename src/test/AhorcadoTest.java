@@ -1,6 +1,9 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.util.ArrayList;
+
 import org.junit.*;
 
 import logica.Ahorcado;
@@ -16,7 +19,7 @@ public class AhorcadoTest {
 
 	@Test
 	public void adivinarLetraYObtenerPalabraConGuionesTest() {
-		a.adivinarLetra('a');
+		a.jugar('a');
 		String palabraEsperada = "-a-a";
 
 		assertEquals(palabraEsperada, a.obtenerPalabraSecreta());
@@ -24,19 +27,19 @@ public class AhorcadoTest {
 
 	@Test
 	public void sumarPuntajeTest() {
-		a.adivinarLetra('a');
+		a.jugar('a');
 		assertEquals(1, a.getPuntaje());
 	}
 
 	@Test
 	public void intentoCorrectoTest() {
-		a.adivinarLetra('a');
+		a.jugar('a');
 		assertEquals(6, a.getIntentos());
 	}
 
 	@Test
 	public void restarIntentoPositivoTest() {
-		a.adivinarLetra('b');
+		a.jugar('b');
 		assertEquals(5, a.getIntentos());
 	}
 
@@ -44,7 +47,7 @@ public class AhorcadoTest {
 	public void restarIntentoIgualACeroTest() {
 		int i = 8;
 		while (i >= 0) {
-			a.adivinarLetra('b');
+			a.jugar('b');
 			i--;
 		}
 
@@ -53,8 +56,8 @@ public class AhorcadoTest {
 
 	@Test
 	public void agregarLetrasAdivinadas() {
-		a.adivinarLetra('a');
-		a.adivinarLetra('s');
+		a.jugar('a');
+		a.jugar('s');
 		int tamañoLetrasAdivinadas = a.getLetrasAdivinadas().size();
 
 		assertEquals(2, tamañoLetrasAdivinadas);
@@ -62,15 +65,15 @@ public class AhorcadoTest {
 
 	@Test
 	public void sumarPuntajeDeLetraAdivinada() {
-		a.adivinarLetra('a');
-		a.adivinarLetra('a');
+		a.jugar('a');
+		a.jugar('a');
 		assertEquals(1, a.getPuntaje());
 	}
 
 	@Test
 	public void reiniciarJuegoPuntajeTest() {
-		a.adivinarLetra('c');
-		a.adivinarLetra('s');
+		a.jugar('c');
+		a.jugar('s');
 
 		a.reiniciarJuego();
 
@@ -79,8 +82,8 @@ public class AhorcadoTest {
 
 	@Test
 	public void reiniciarJuegoIntentosTest() {
-		a.adivinarLetra('t');
-		a.adivinarLetra('z');
+		a.jugar('t');
+		a.jugar('z');
 
 		a.reiniciarJuego();
 
@@ -90,16 +93,16 @@ public class AhorcadoTest {
 	@Test
 	public void cambiarPalabraTest() {
 		Ahorcado ahorcado = new Ahorcado("perro");
-		ahorcado.adivinarLetra('p');
-		ahorcado.adivinarLetra('e');
-		ahorcado.adivinarLetra('r');
+		ahorcado.jugar('p');
+		ahorcado.jugar('e');
+		ahorcado.jugar('r');
 
 		ahorcado.cambiarPalabra();
 		;
 
-		ahorcado.adivinarLetra('p');
-		ahorcado.adivinarLetra('e');
-		ahorcado.adivinarLetra('r');
+		ahorcado.jugar('p');
+		ahorcado.jugar('e');
+		ahorcado.jugar('r');
 		String palabraNueva = ahorcado.obtenerPalabraSecreta();
 
 		assertNotEquals("perr-", palabraNueva);
@@ -109,7 +112,7 @@ public class AhorcadoTest {
 	public void siPerdioJuegoTest() {
 		Ahorcado ahorcado = new Ahorcado("pepito");
 		for (int i = 0; i < 6; i++) {
-			ahorcado.adivinarLetra('z');
+			ahorcado.jugar('z');
 		}
 		assertEquals(true, ahorcado.perdioJuego());
 	}
@@ -118,9 +121,9 @@ public class AhorcadoTest {
 	public void noPerdioJuegoTest() {
 		Ahorcado ahorcado = new Ahorcado("pepito");
 
-		ahorcado.adivinarLetra('p');
-		ahorcado.adivinarLetra('z');
-		ahorcado.adivinarLetra('t');
+		ahorcado.jugar('p');
+		ahorcado.jugar('z');
+		ahorcado.jugar('t');
 
 		assertEquals(false, ahorcado.perdioJuego());
 	}
@@ -130,7 +133,7 @@ public class AhorcadoTest {
 		Ahorcado ahorcado = new Ahorcado("qwertyuiopasdfghjklñ");
 		String palabra = "qwertyuiopasdfghjklñ";
 		for (int i = 0; i < palabra.length(); i++) {
-			ahorcado.adivinarLetra(palabra.charAt(i));
+			ahorcado.jugar(palabra.charAt(i));
 		}
 
 		assertEquals(true, ahorcado.ganoJuego());
@@ -144,11 +147,11 @@ public class AhorcadoTest {
 	@Test
 	public void ganoJuegoPuntaje5Test() {
 		Ahorcado ahorcado = new Ahorcado("taller");
-		ahorcado.adivinarLetra("t");
-		ahorcado.adivinarLetra("a");
-		ahorcado.adivinarLetra("l");
-		ahorcado.adivinarLetra("e");
-		ahorcado.adivinarLetra("r");
+		ahorcado.jugar("t");
+		ahorcado.jugar("a");
+		ahorcado.jugar("l");
+		ahorcado.jugar("e");
+		ahorcado.jugar("r");
 
 		assertEquals(false, ahorcado.ganoJuego());
 	}
@@ -156,11 +159,11 @@ public class AhorcadoTest {
 	@Test
 	public void puntajeMayusculasTest() {
 		Ahorcado ahorcado = new Ahorcado("holas");
-		ahorcado.adivinarLetra("H");
-		ahorcado.adivinarLetra("O");
-		ahorcado.adivinarLetra("L");
-		ahorcado.adivinarLetra("A");
-		ahorcado.adivinarLetra("S");
+		ahorcado.jugar("H");
+		ahorcado.jugar("O");
+		ahorcado.jugar("L");
+		ahorcado.jugar("A");
+		ahorcado.jugar("S");
 
 		assertEquals(5, ahorcado.getPuntaje());
 	}
@@ -177,8 +180,8 @@ public class AhorcadoTest {
 	public void intentosFallarYAcertarTest() {
 		Ahorcado ahorcado = new Ahorcado("Hello");
 
-		ahorcado.adivinarLetra('a');
-		ahorcado.adivinarLetra('l');
+		ahorcado.jugar('a');
+		ahorcado.jugar('l');
 
 		assertEquals(5, ahorcado.getIntentos());
 	}
@@ -186,8 +189,7 @@ public class AhorcadoTest {
 	@Test
 	public void reiniciarLetrasAdivinadasTest() {
 		Ahorcado ahorcado = new Ahorcado("a");
-		ahorcado.adivinarLetra('a');
-		ahorcado.adivinarPalabra();
+		ahorcado.jugar('a');
 	
 		
 		// Despues de adivinar una palabra, deberia reiniciarse esta lista a una sin letras.
@@ -195,5 +197,29 @@ public class AhorcadoTest {
 		
 		assertEquals(0, tamañoLetrasAdivinadas);
 	}
+	@Test
+	public void agregarLetraIngresada() {
+		Ahorcado ahorcado = new Ahorcado("bellota");
+		ahorcado.jugar('b');
+		ahorcado.jugar('e');
+		
+		ArrayList<String> esperado = new ArrayList<String>();
+		esperado.add("b");
+		esperado.add("e");
+		
+		assertEquals(esperado, ahorcado.getLetrasIngresadas());
+	}
 	
+	@Test
+	public void reiniciarLetrasIngresadasTest() {
+		Ahorcado ahorcado = new Ahorcado("auto");
+
+		ahorcado.jugar('a');
+		ahorcado.jugar('u');
+		ahorcado.jugar('t');
+		ahorcado.jugar('o');
+		
+		
+		assertEquals(0, ahorcado.getLetrasIngresadas().size());
+	}
 }

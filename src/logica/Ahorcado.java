@@ -11,6 +11,7 @@ public class Ahorcado {
 	private String palabra;
 	private char[] palabraSecreta;
 	private ArrayList<String> letrasAdivinadas;
+	private ArrayList<String> letrasIngresadas;
 	private int puntaje;
 	private int intentos;
 	private String dificultad;
@@ -19,6 +20,7 @@ public class Ahorcado {
 		this.palabra = elegirPalabra();
 		this.palabraSecreta = convertirPalabraAGuiones(this.palabra);
 		this.letrasAdivinadas = new ArrayList<String>();
+		this.letrasIngresadas = new ArrayList<String>();
 		this.intentos = 6;
 		this.puntaje = 0;
 		this.dificultad = "Normal";
@@ -29,6 +31,7 @@ public class Ahorcado {
 		this.palabra = palabra;
 		this.palabraSecreta = convertirPalabraAGuiones(palabra);
 		this.letrasAdivinadas = new ArrayList<String>();
+		this.letrasIngresadas = new ArrayList<String>();
 		this.intentos = 6;
 		this.puntaje = 0;
 		this.dificultad = "Normal";
@@ -41,8 +44,20 @@ public class Ahorcado {
 		}
 		return palabra.toString();
 	}
+	
+	public void jugar(String letra) {
+		if (letra.length() > 0) {
+			char letraChar = letra.charAt(0);
+			jugar(letraChar);
+		}
+	}
 
-	public void adivinarLetra(char letra) {
+	public void jugar(char letra) {	
+		adivinarLetra(letra);
+		adivinarPalabra();	
+	}
+	
+	private void adivinarLetra(char letra) {
 		letra = Character.toLowerCase(letra);
 		if (adivinoLetra(letra)) {
 			cambiarEstadoPalabra(letra);
@@ -51,21 +66,34 @@ public class Ahorcado {
 		} else {
 			quitarIntentos();
 		}
+		agregarLetraIngresada(letra);
 	}
 
-	public void adivinarLetra(String str) {
-		if (str.length() > 0) {
-			char letra = str.charAt(0);
-			adivinarLetra(letra);
-		}
-	}
-
-	public void adivinarPalabra() {
+	private void adivinarPalabra() {
 		if (adivinoPalabra()) {
 			cambiarPalabra();
 			restablecerIntentos();
 			reiniciarLetrasAdivinadas();
+			reiniciarLetrasIngresadas();
 		}
+	}
+	private void agregarLetraIngresada(char letra) {
+		if(!esLetraIngresada(letra)) {
+			this.letrasIngresadas.add(""+letra);
+		}
+	}
+
+	public ArrayList<String> getLetrasIngresadas() {
+		return letrasIngresadas;
+	}
+
+	private boolean esLetraIngresada(char letra) {
+		return this.letrasIngresadas.contains("" + letra);
+	}
+
+	private void reiniciarLetrasIngresadas() {
+		this.letrasIngresadas.clear();
+		
 	}
 
 	public void cambiarPalabra() {
