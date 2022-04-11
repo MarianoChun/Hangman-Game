@@ -3,6 +3,7 @@ package interfaz_juego;
 import java.awt.EventQueue;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -132,6 +133,7 @@ public class MenuForm {
 
 	private void crearFormMenu() {
 		this.frmMenu = new JFrame();
+		frmMenu.setIconImage(new ImageIcon(getClass().getResource("/icon/ahorcado_icon.png")).getImage());
 		frmMenu.getContentPane().setBackground(new Color(204, 204, 255));
 		frmMenu.getContentPane().setFont(new Font("Dialog", Font.BOLD, 14));
 		frmMenu.setForeground(Color.WHITE);

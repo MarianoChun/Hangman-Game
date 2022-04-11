@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -246,6 +247,7 @@ public class MainForm {
 
 	private void crearDiseñoJuego() {
 		frmJuegoAhorcado = new JFrame();
+		frmJuegoAhorcado.setIconImage(new ImageIcon(getClass().getResource("/icon/ahorcado_icon.png")).getImage());
 		frmJuegoAhorcado.getContentPane().setBackground(new Color(204, 204, 255));
 		frmJuegoAhorcado.setForeground(Color.WHITE);
 		frmJuegoAhorcado.getContentPane().setForeground(Color.WHITE);
