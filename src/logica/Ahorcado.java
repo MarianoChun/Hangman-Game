@@ -87,6 +87,14 @@ public class Ahorcado {
 		return letrasIngresadas;
 	}
 
+	public String obtenerStringLetrasIngresadas() {
+		StringBuilder letrasIngresadas = new StringBuilder();
+		for(String letra : this.letrasIngresadas) {
+			letrasIngresadas.append(letra).append(" ");	
+		}
+		return letrasIngresadas.toString();
+	}
+
 	private boolean esLetraIngresada(char letra) {
 		return this.letrasIngresadas.contains("" + letra);
 	}

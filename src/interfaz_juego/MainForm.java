@@ -70,6 +70,8 @@ public class MainForm {
 		cambiarIdioma();
 
 		// Labels
+		JLabel lblLetrasYaIngresadas = crearLbslLetrasYaIngresadas();
+		
 		crearLblPalabraJuego();
 		JLabel lblPuntaje = crearLblPuntajeJuego();
 		JLabel lblIntentos = crearLblIntentosJuego();
@@ -78,28 +80,33 @@ public class MainForm {
 		JLabel lblPalabraConGuiones = crearLblPalabraConGuionesJuego();
 
 		// Verificar letra ingresada
-		crearBtnVerificarLetraJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones);
+		crearBtnVerificarLetraJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones, lblLetrasYaIngresadas);
 
 		// Reiniciar juego
-		crearBtnReiniciarJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones);
+		crearBtnReiniciarJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones, lblLetrasYaIngresadas);
 
 		// Letra ingresada por usuario
-		crearTxtFieldLetraIngresadaJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones);
-
+		crearTxtFieldLetraIngresadaJuego(lblPuntaje, lblIntentos, lblPalabraConGuiones, lblLetrasYaIngresadas);
+		
 		// Actualizar texto
-		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
-		
-		JLabel lblTextoLetrasYaIngresadas = new JLabel("Letras ya ingresadas");
-		lblTextoLetrasYaIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoLetrasYaIngresadas.setBounds(204, 92, 129, 14);
-		frmJuegoAhorcado.getContentPane().add(lblTextoLetrasYaIngresadas);
-		
-		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setBounds(204, 117, 143, 23);
-		frmJuegoAhorcado.getContentPane().add(lblNewLabel_1);
+		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada, lblLetrasYaIngresadas);
 	}
 
-	private void crearTxtFieldLetraIngresadaJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
+	private JLabel crearLbslLetrasYaIngresadas() {
+		JLabel lblTextoLetrasYaIngresadas = new JLabel("Letras ya ingresadas");
+		lblTextoLetrasYaIngresadas.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTextoLetrasYaIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
+		lblTextoLetrasYaIngresadas.setBounds(204, 45, 129, 23);
+		frmJuegoAhorcado.getContentPane().add(lblTextoLetrasYaIngresadas);
+		
+		JLabel lblLetrasYaIngresadas = new JLabel("");
+		lblLetrasYaIngresadas.setBounds(204, 70, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(lblLetrasYaIngresadas);
+		return lblLetrasYaIngresadas;
+	}
+
+	private void crearTxtFieldLetraIngresadaJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones,
+			JLabel lblLetrasYaIngresadas) {
 		textLetraIngresada = new JTextField();
 		textLetraIngresada.addKeyListener(new KeyAdapter() {
 			@Override
@@ -110,7 +117,7 @@ public class MainForm {
 
 					finalizarOContinuarJuego();
 
-					actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+					actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada, lblLetrasYaIngresadas);
 				}
 			}
 		});
@@ -138,22 +145,24 @@ public class MainForm {
 		}
 		
 	}
-	private void crearBtnReiniciarJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
+	private void crearBtnReiniciarJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones,
+			JLabel lblLetrasYaIngresadas) {
 		JButton btnReiniciar = new JButton(textos.get("reiniciar"));
 		btnReiniciar.setBackground(new Color(255, 255, 204));
 		btnReiniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ventanaReiniciarJuego();
-				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada, lblLetrasYaIngresadas);
 			}
 		});
 
 		btnReiniciar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnReiniciar.setBounds(204, 53, 143, 23);
+		btnReiniciar.setBounds(204, 11, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(btnReiniciar);
 	}
 
-	private void crearBtnVerificarLetraJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones) {
+	private void crearBtnVerificarLetraJuego(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones,
+			JLabel lblLetrasYaIngresadas) {
 		JButton btnVerificarLetra = new JButton(textos.get("verificarLetra"));
 		btnVerificarLetra.setBackground(new Color(245, 222, 179));
 		btnVerificarLetra.setForeground(new Color(0, 0, 0));
@@ -167,7 +176,7 @@ public class MainForm {
 
 				finalizarOContinuarJuego();
 
-				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada);
+				actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada, lblLetrasYaIngresadas);
 			}
 
 		});
@@ -202,11 +211,11 @@ public class MainForm {
 	}
 
 	private void crearLblPalabraJuego() {
-		JLabel lblLetrasIngresadas = new JLabel(textos.get("palabraAAdivinar"));
-		lblLetrasIngresadas.setFont(new Font("Tahoma", Font.PLAIN, 16));
-		lblLetrasIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLetrasIngresadas.setBounds(204, 117, 143, 23);
-		frmJuegoAhorcado.getContentPane().add(lblLetrasIngresadas);
+		JLabel lblLetraUsuario = new JLabel(textos.get("palabraAAdivinar"));
+		lblLetraUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
+		lblLetraUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLetraUsuario.setBounds(204, 117, 143, 23);
+		frmJuegoAhorcado.getContentPane().add(lblLetraUsuario);
 	}
 
 	private void crearDiseñoJuego() {
@@ -250,7 +259,7 @@ public class MainForm {
 		if (opcion == 0) {
 			ahorcado.reiniciarJuego();
 		}
-		if (opcion == 1) {
+		if (opcion == 1 || opcion == -1) {
 			System.exit(0);
 		}
 	}
@@ -272,7 +281,7 @@ public class MainForm {
 
 	// actualizar texto
 	private void actualizarTexto(JLabel lblPuntaje, JLabel lblIntentos, JLabel lblPalabraConGuiones,
-			JTextField textLetraIngresada) {
+			JTextField textLetraIngresada, JLabel lblLetrasYaIngresadas) {
 		String textoPuntaje = textos.get("textoPuntaje");
 		String textoIntentos = textos.get("textoIntentos");
 
@@ -280,6 +289,7 @@ public class MainForm {
 		lblPuntaje.setText(textoPuntaje + ": " + ahorcado.getPuntaje());
 		lblIntentos.setText(textoIntentos + ": " + ahorcado.getIntentos());
 		textLetraIngresada.setText("");
+		lblLetrasYaIngresadas.setText(ahorcado.obtenerStringLetrasIngresadas());
 	}
 
 	private void buildIdiomaIngles() {
