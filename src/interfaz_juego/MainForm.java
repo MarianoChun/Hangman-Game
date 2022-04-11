@@ -20,6 +20,8 @@ import logica.Ahorcado;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseEvent;
 
 public class MainForm {
 
@@ -95,7 +97,15 @@ public class MainForm {
 	}
 
 	private void crearBtnVolverAMenu() {
-		JButton btnVolverMenu = new JButton(textos.get("VolverAMenu"));
+		JButton btnVolverMenu = new JButton(textos.get("volverAMenu"));
+		btnVolverMenu.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		btnVolverMenu.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				String msj = "Perderas tu puntaje";
+				btnVolverMenu.setToolTipText(msj);
+			}
+		});
 		btnVolverMenu.setBackground(new Color(255, 255, 204));
 		btnVolverMenu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -103,19 +113,20 @@ public class MainForm {
 				menu = new MenuForm();
 			}
 		});
-		btnVolverMenu.setBounds(192, 0, 165, 23);
+		btnVolverMenu.setBounds(192, 11, 165, 23);
 		frmJuegoAhorcado.getContentPane().add(btnVolverMenu);
 	}
 
 	private JLabel crearLbslLetrasYaIngresadas() {
 		JLabel lblTextoLetrasYaIngresadas = new JLabel(textos.get("letrasYaIngresadas"));
-		lblTextoLetrasYaIngresadas.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblTextoLetrasYaIngresadas.setFont(new Font("Tahoma", Font.BOLD, 15));
 		lblTextoLetrasYaIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoLetrasYaIngresadas.setBounds(192, 62, 165, 23);
+		lblTextoLetrasYaIngresadas.setBounds(162, 75, 218, 23);
 		frmJuegoAhorcado.getContentPane().add(lblTextoLetrasYaIngresadas);
 		
 		JLabel lblLetrasYaIngresadas = new JLabel("");
-		lblLetrasYaIngresadas.setBounds(192, 83, 165, 23);
+		lblLetrasYaIngresadas.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblLetrasYaIngresadas.setBounds(192, 110, 165, 23);
 		frmJuegoAhorcado.getContentPane().add(lblLetrasYaIngresadas);
 		return lblLetrasYaIngresadas;
 	}
@@ -172,7 +183,7 @@ public class MainForm {
 		});
 
 		btnReiniciar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnReiniciar.setBounds(192, 28, 165, 23);
+		btnReiniciar.setBounds(192, 45, 165, 23);
 		frmJuegoAhorcado.getContentPane().add(btnReiniciar);
 	}
 
@@ -204,7 +215,7 @@ public class MainForm {
 		JLabel lblPalabraConGuiones = new JLabel("");
 		lblPalabraConGuiones.setFont(new Font("Tahoma", Font.PLAIN, 24));
 		lblPalabraConGuiones.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPalabraConGuiones.setBounds(162, 162, 218, 48);
+		lblPalabraConGuiones.setBounds(162, 178, 218, 48);
 		frmJuegoAhorcado.getContentPane().add(lblPalabraConGuiones);
 		return lblPalabraConGuiones;
 	}
@@ -229,7 +240,7 @@ public class MainForm {
 		JLabel lblLetraUsuario = new JLabel(textos.get("palabraAAdivinar"));
 		lblLetraUsuario.setFont(new Font("Tahoma", Font.PLAIN, 16));
 		lblLetraUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		lblLetraUsuario.setBounds(204, 117, 143, 23);
+		lblLetraUsuario.setBounds(204, 144, 143, 23);
 		frmJuegoAhorcado.getContentPane().add(lblLetraUsuario);
 	}
 
@@ -314,7 +325,7 @@ public class MainForm {
 		textos.put("palabraAAdivinar", "Word to guess");
 		textos.put("verificarLetra", "Guess letter");
 		textos.put("letrasYaIngresadas", "Letters already entered");
-		textos.put("VolverAMenu", "Return to main menu");
+		textos.put("volverAMenu", "Return to main menu");
 	}
 
 	private void buildIdiomaEspañol() {
@@ -324,6 +335,6 @@ public class MainForm {
 		textos.put("palabraAAdivinar", "Palabra a adivinar");
 		textos.put("verificarLetra", "Verificar letra");
 		textos.put("letrasYaIngresadas", "Letras ya ingresadas");
-		textos.put("VolverAMenu", "Volver al menú");
+		textos.put("volverAMenu", "Volver al menú");
 	}
 }
