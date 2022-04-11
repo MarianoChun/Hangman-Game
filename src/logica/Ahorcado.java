@@ -100,8 +100,7 @@ public class Ahorcado {
 	}
 
 	private void reiniciarLetrasIngresadas() {
-		this.letrasIngresadas.clear();
-		
+		this.letrasIngresadas.clear();	
 	}
 
 	public void cambiarPalabra() {
@@ -130,6 +129,7 @@ public class Ahorcado {
 		cambiarPalabra();
 		restablecerPuntaje();
 		restablecerIntentos();
+		reiniciarLetrasIngresadas();
 	}
 
 	public boolean perdioJuego() {
