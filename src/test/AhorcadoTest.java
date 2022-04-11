@@ -222,4 +222,18 @@ public class AhorcadoTest {
 		
 		assertEquals(0, ahorcado.getLetrasIngresadas().size());
 	}
+
+	@Test
+	public void reiniciarLetrasIngresadasCambiarPalabraTest() {
+		Ahorcado ahorcado = new Ahorcado("auto");
+
+		ahorcado.jugar('a');
+		ahorcado.jugar('u');
+		ahorcado.jugar('t');
+		
+		ahorcado.cambiarPalabra();
+		
+		
+		assertEquals(0, ahorcado.getLetrasIngresadas().size());
+	}
 }

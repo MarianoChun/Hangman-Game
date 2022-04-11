@@ -126,8 +126,6 @@ public class Ahorcado {
 		if (adivinoPalabra()) {
 			cambiarPalabra();
 			restablecerIntentos();
-			reiniciarLetrasAdivinadas();
-			reiniciarLetrasIngresadas();
 		}
 	}
 	
@@ -150,6 +148,8 @@ public class Ahorcado {
 		while (nuevaPalabra == viejaPalabra)
 			nuevaPalabra = elegirPalabra();
 
+		reiniciarLetrasAdivinadas();
+		reiniciarLetrasIngresadas();
 		this.palabra = nuevaPalabra;
 		this.palabraSecreta = convertirPalabraAGuiones(nuevaPalabra);
 	}
