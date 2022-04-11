@@ -90,17 +90,32 @@ public class MainForm {
 		
 		// Actualizar texto
 		actualizarTexto(lblPuntaje, lblIntentos, lblPalabraConGuiones, textLetraIngresada, lblLetrasYaIngresadas);
+		
+		crearBtnVolverAMenu();
+	}
+
+	private void crearBtnVolverAMenu() {
+		JButton btnVolverMenu = new JButton(textos.get("VolverAMenu"));
+		btnVolverMenu.setBackground(new Color(255, 255, 204));
+		btnVolverMenu.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				frmJuegoAhorcado.setVisible(false);
+				menu = new MenuForm();
+			}
+		});
+		btnVolverMenu.setBounds(192, 0, 165, 23);
+		frmJuegoAhorcado.getContentPane().add(btnVolverMenu);
 	}
 
 	private JLabel crearLbslLetrasYaIngresadas() {
-		JLabel lblTextoLetrasYaIngresadas = new JLabel("Letras ya ingresadas");
+		JLabel lblTextoLetrasYaIngresadas = new JLabel(textos.get("letrasYaIngresadas"));
 		lblTextoLetrasYaIngresadas.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblTextoLetrasYaIngresadas.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTextoLetrasYaIngresadas.setBounds(204, 45, 129, 23);
+		lblTextoLetrasYaIngresadas.setBounds(192, 62, 165, 23);
 		frmJuegoAhorcado.getContentPane().add(lblTextoLetrasYaIngresadas);
 		
 		JLabel lblLetrasYaIngresadas = new JLabel("");
-		lblLetrasYaIngresadas.setBounds(204, 70, 143, 23);
+		lblLetrasYaIngresadas.setBounds(192, 83, 165, 23);
 		frmJuegoAhorcado.getContentPane().add(lblLetrasYaIngresadas);
 		return lblLetrasYaIngresadas;
 	}
@@ -157,7 +172,7 @@ public class MainForm {
 		});
 
 		btnReiniciar.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		btnReiniciar.setBounds(204, 11, 143, 23);
+		btnReiniciar.setBounds(192, 28, 165, 23);
 		frmJuegoAhorcado.getContentPane().add(btnReiniciar);
 	}
 
@@ -298,6 +313,8 @@ public class MainForm {
 		textos.put("reiniciar", "Restart");
 		textos.put("palabraAAdivinar", "Word to guess");
 		textos.put("verificarLetra", "Guess letter");
+		textos.put("letrasYaIngresadas", "Letters already entered");
+		textos.put("VolverAMenu", "Return to main menu");
 	}
 
 	private void buildIdiomaEspañol() {
@@ -306,5 +323,7 @@ public class MainForm {
 		textos.put("reiniciar", "Reiniciar");
 		textos.put("palabraAAdivinar", "Palabra a adivinar");
 		textos.put("verificarLetra", "Verificar letra");
+		textos.put("letrasYaIngresadas", "Letras ya ingresadas");
+		textos.put("VolverAMenu", "Volver al menú");
 	}
 }
