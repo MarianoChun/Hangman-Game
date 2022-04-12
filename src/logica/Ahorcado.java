@@ -60,24 +60,24 @@ public class Ahorcado {
 		}
 	}
 
-	public void jugar(char letra) {	
-		adivinarLetra(letra);
-		adivinarPalabra();	
-	}
-
-	private void adivinarLetra(char letra) {
-		letra = Character.toLowerCase(letra);
-		if (adivinoLetra(letra)) {
+	public void jugar(char letra) {
+		if(adivinoLetra(letra)) {
 			cambiarEstadoPalabra(letra);
-			sumarPuntaje(letra);
+			sumarPuntaje(letra);	
+			
 			agregarLetraAdivinada(letra);
-		} else {
+			agregarLetraIngresada(letra);
+			
+			adivinarPalabra();
+		} else {	
 			quitarIntentos();
+			agregarLetraIngresada(letra);
 		}
-		agregarLetraIngresada(letra);
+
 	}
 
 	private boolean adivinoLetra(char letra) {
+		letra = Character.toLowerCase(letra);
 		return this.palabra.contains("" + letra);
 	}
 	
@@ -93,6 +93,10 @@ public class Ahorcado {
 		if (!esLetraAdivinada(letra)) {
 			this.puntaje++;
 		}
+	}
+	
+	private void sumarPuntaje() {
+		this.puntaje++;
 	}
 	
 	private boolean esLetraAdivinada(char letra) {
@@ -216,8 +220,13 @@ public class Ahorcado {
 	public boolean ganoJuego() {
 		if (this.puntaje == 0) {
 			return false;
+		}  
+		if(this.puntaje % 20 == 0) {
+			sumarPuntaje();
+			return true;
 		}
-		return this.puntaje % 20 == 0;
+		
+		return false;
 	}
 	
 	public ArrayList<String> getLetrasIngresadas() {
