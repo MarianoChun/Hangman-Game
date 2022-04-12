@@ -67,8 +67,9 @@ public class Ahorcado {
 			sumarPuntaje(letra);	
 			agregarLetraAdivinada(letra);
 			
-			if(adivinoPalabra())
+			if(adivinoPalabra()) {
 				cambiarASiguientePalabra();
+			}
 		} else {	
 			quitarIntentos();
 		}
