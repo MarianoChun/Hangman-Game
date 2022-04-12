@@ -61,16 +61,17 @@ public class Ahorcado {
 	}
 
 	public void jugar(char letra) {
+		agregarLetraIngresada(letra);
 		if(adivinoLetra(letra)) {
-			cambiarEstadoPalabra(letra);
+			actualizarLetraAdivinadaEnPalabra(letra);
 			sumarPuntaje(letra);	
 			agregarLetraAdivinada(letra);
 			if(adivinoPalabra())
-				adivinarPalabra();
+				cambiarASiguientePalabra();
 		} else {	
 			quitarIntentos();
 		}
-		agregarLetraIngresada(letra);
+		
 	}
 
 	private boolean adivinoLetra(char letra) {
@@ -78,7 +79,7 @@ public class Ahorcado {
 		return this.palabra.contains("" + letra);
 	}
 	
-	private void cambiarEstadoPalabra(char letra) {
+	private void actualizarLetraAdivinadaEnPalabra(char letra) {
 		for (int i = 0; i < this.palabraSecreta.length; i++) {
 			if (letra == this.palabra.charAt(i)) {
 				this.palabraSecreta[i] = letra;
@@ -90,10 +91,6 @@ public class Ahorcado {
 		if (!esLetraAdivinada(letra)) {
 			this.puntaje++;
 		}
-	}
-	
-	private void sumarPuntaje() {
-		this.puntaje++;
 	}
 	
 	private boolean esLetraAdivinada(char letra) {
@@ -122,12 +119,9 @@ public class Ahorcado {
 		return this.letrasIngresadas.contains("" + letra);
 	}
 	
-	
-	private void adivinarPalabra() {
-		if (adivinoPalabra()) {
-			cambiarPalabra();
-			restablecerIntentos();
-		}
+	private void cambiarASiguientePalabra() {
+		cambiarPalabra();
+		restablecerIntentos();	
 	}
 	
 	private boolean adivinoPalabra() {
@@ -179,7 +173,6 @@ public class Ahorcado {
 		cambiarPalabra();
 		restablecerPuntaje();
 		restablecerIntentos();
-		reiniciarLetrasIngresadas();
 	}
 	
 	private void restablecerPuntaje() {
@@ -222,8 +215,12 @@ public class Ahorcado {
 			sumarPuntaje();
 			return true;
 		}
-		
+
 		return false;
+	}
+	
+	private void sumarPuntaje() {
+		this.puntaje++;
 	}
 	
 	public ArrayList<String> getLetrasIngresadas() {
