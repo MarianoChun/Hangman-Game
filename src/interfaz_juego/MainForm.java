@@ -258,6 +258,7 @@ public class MainForm {
 		frmJuegoAhorcado.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmJuegoAhorcado.getContentPane().setLayout(null);
 		frmJuegoAhorcado.setVisible(true);
+		frmJuegoAhorcado.setLocationRelativeTo(null);
 	}
 
 	private void finalizarOContinuarJuego() {

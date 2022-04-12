@@ -145,6 +145,7 @@ public class MenuForm {
 		frmMenu.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmMenu.getContentPane().setLayout(null);
 		frmMenu.setVisible(true);
+		frmMenu.setLocationRelativeTo(null);
 	}
 
 	public String getDificultad() {
