@@ -120,10 +120,8 @@ public class Ahorcado {
 	}
 	
 	private void cambiarASiguientePalabra() {
-		if (adivinoPalabra()) {
-			cambiarPalabra();
-			restablecerIntentos();
-		}
+		cambiarPalabra();
+		restablecerIntentos();	
 	}
 	
 	private boolean adivinoPalabra() {
