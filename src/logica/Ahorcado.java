@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Ahorcado {
-	private String[] palabrasEspañol = { /*"ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse",
+	private String[] palabrasEspañol = { "ola", "mar", "casa", "auto", "perro", "gato", "oso", "botella", "eclipse",
 			"barco", "bote", "taller", "trabajo", "torta", "pupitre", "arboleda", "cartuchera", "cielo", "computadora",
-			"programacion", "rio", "puerta", "anillo", "edificio", "pelota", "mate", "poste", "mesa",*/ "moto", "teclado"};
+			"programacion", "rio", "puerta", "anillo", "edificio", "pelota", "mate", "poste", "mesa", "moto", "teclado"};
 	private String[] palabrasIngles = { "abruptly", "absurd", "abyss", "avenue", "lucky", "length", "matrix", "night",
 			"pixel", "programming", "waltz", "airplane", "acommodation","money", "eyes", "car", "bike", "tree", "day",
 			"party", "job", "guitar", "lights", "building", "street", "love", "school", "college", "family", "book"};
