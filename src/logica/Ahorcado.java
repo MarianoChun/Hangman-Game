@@ -63,11 +63,11 @@ public class Ahorcado {
 	public void jugar(char letra) {
 		agregarLetraIngresada(letra);
 		if(adivinoLetra(letra)) {
-			cambiarEstadoPalabra(letra);
+			actualizarLetraAdivinadaEnPalabra(letra);
 			sumarPuntaje(letra);	
 			agregarLetraAdivinada(letra);
 			if(adivinoPalabra())
-				adivinarPalabra();
+				cambiarASiguientePalabra();
 		} else {	
 			quitarIntentos();
 		}
@@ -79,7 +79,7 @@ public class Ahorcado {
 		return this.palabra.contains("" + letra);
 	}
 	
-	private void cambiarEstadoPalabra(char letra) {
+	private void actualizarLetraAdivinadaEnPalabra(char letra) {
 		for (int i = 0; i < this.palabraSecreta.length; i++) {
 			if (letra == this.palabra.charAt(i)) {
 				this.palabraSecreta[i] = letra;
@@ -124,7 +124,7 @@ public class Ahorcado {
 	}
 	
 	
-	private void adivinarPalabra() {
+	private void cambiarASiguientePalabra() {
 		if (adivinoPalabra()) {
 			cambiarPalabra();
 			restablecerIntentos();
