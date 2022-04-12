@@ -66,14 +66,14 @@ public class Ahorcado {
 			sumarPuntaje(letra);	
 			
 			agregarLetraAdivinada(letra);
-			agregarLetraIngresada(letra);
 			
-			adivinarPalabra();
+			
+			if(adivinoPalabra())
+				adivinarPalabra();
 		} else {	
 			quitarIntentos();
-			agregarLetraIngresada(letra);
 		}
-
+		agregarLetraIngresada(letra);
 	}
 
 	private boolean adivinoLetra(char letra) {
