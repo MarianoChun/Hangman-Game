@@ -133,7 +133,7 @@ public class MenuForm {
 
 	private void crearFormMenu() {
 		this.frmMenu = new JFrame();
-		frmMenu.setIconImage(new ImageIcon(getClass().getResource("/icon/ahorcado_icon.png")).getImage());
+		frmMenu.setIconImage(new ImageIcon(getClass().getResource("/imgs/ahorcado_icon.png")).getImage());
 		frmMenu.getContentPane().setBackground(new Color(204, 204, 255));
 		frmMenu.getContentPane().setFont(new Font("Dialog", Font.BOLD, 14));
 		frmMenu.setForeground(Color.WHITE);

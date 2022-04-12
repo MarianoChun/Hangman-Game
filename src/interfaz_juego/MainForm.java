@@ -247,7 +247,7 @@ public class MainForm {
 
 	private void crearDiseñoJuego() {
 		frmJuegoAhorcado = new JFrame();
-		frmJuegoAhorcado.setIconImage(new ImageIcon(getClass().getResource("/icon/ahorcado_icon.png")).getImage());
+		frmJuegoAhorcado.setIconImage(new ImageIcon(getClass().getResource("/imgs/ahorcado_icon.png")).getImage());
 		frmJuegoAhorcado.getContentPane().setBackground(new Color(204, 204, 255));
 		frmJuegoAhorcado.setForeground(Color.WHITE);
 		frmJuegoAhorcado.getContentPane().setForeground(Color.WHITE);
