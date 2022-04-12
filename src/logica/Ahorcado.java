@@ -61,6 +61,7 @@ public class Ahorcado {
 	}
 
 	public void jugar(char letra) {
+		agregarLetraIngresada(letra);
 		if(adivinoLetra(letra)) {
 			cambiarEstadoPalabra(letra);
 			sumarPuntaje(letra);	
@@ -70,7 +71,7 @@ public class Ahorcado {
 		} else {	
 			quitarIntentos();
 		}
-		agregarLetraIngresada(letra);
+		
 	}
 
 	private boolean adivinoLetra(char letra) {
