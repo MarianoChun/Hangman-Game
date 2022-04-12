@@ -173,7 +173,6 @@ public class Ahorcado {
 		cambiarPalabra();
 		restablecerPuntaje();
 		restablecerIntentos();
-		reiniciarLetrasIngresadas();
 	}
 	
 	private void restablecerPuntaje() {
