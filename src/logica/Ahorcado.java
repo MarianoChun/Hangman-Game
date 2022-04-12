@@ -93,10 +93,6 @@ public class Ahorcado {
 		}
 	}
 	
-	private void sumarPuntaje() {
-		this.puntaje++;
-	}
-	
 	private boolean esLetraAdivinada(char letra) {
 		return this.letrasAdivinadas.contains("" + letra);
 	}
@@ -123,17 +119,11 @@ public class Ahorcado {
 		return this.letrasIngresadas.contains("" + letra);
 	}
 	
-	
-
 	private void cambiarASiguientePalabra() {
 		if (adivinoPalabra()) {
 			cambiarPalabra();
 			restablecerIntentos();
 		}
-	}
-	private void adivinarPalabra() {	
-		cambiarPalabra();
-		restablecerIntentos();	
 	}
 	
 	private boolean adivinoPalabra() {
@@ -228,8 +218,12 @@ public class Ahorcado {
 			sumarPuntaje();
 			return true;
 		}
-		
+
 		return false;
+	}
+	
+	private void sumarPuntaje() {
+		this.puntaje++;
 	}
 	
 	public ArrayList<String> getLetrasIngresadas() {
