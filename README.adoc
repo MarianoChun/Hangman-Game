@@ -14,3 +14,6 @@ El trabajo consiste en la implementación del popular juego “El Ahorcado” en
 El aplicativo selecciona una palabra de una de las listas de palabras (palabras en español o en inglés, dependiendo de que elija el usuario), la cuál el usuario debe adivinar, introduciendo una letra a la vez y arriesgando intentos o sumando puntaje. 
 Cada vez que el usuario acierta alguna letra de la palabra, se muestra por pantalla todas las apariciones de esa letra en la palabra. 
 El usuario tiene una cierta cantidad de intentos fallidos, luego de los cuales pierde el juego. También puede ganar el juego, cada vez que logre sumar 20 puntos, este gana y se le da la opción de seguir jugando para sumar más puntos o terminar el juego.
+
+== Uso
+Solo basta con clonar el repo y ejecutar el archivo .jar, a jugar!
